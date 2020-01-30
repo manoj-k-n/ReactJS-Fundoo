@@ -1,0 +1,162 @@
+
+.login{
+    margin:auto;
+    margin-top: 70px;
+    width: 30%;
+    
+    border: 3px solid lightgray;
+    padding: 10px;
+
+}
+.login-h1{
+    margin-top: o;
+    font-weight:500;
+    width:80%;
+   color:cadetblue;
+     text-align:center; 
+     padding-left:30px; 
+     font-style: initial;
+    /* border:3px red solid; */
+}
+.login-email{
+    padding: 10px;
+    padding-top: 0%;
+    padding-left: 36px;
+}
+.login-password{
+    padding: 10px;
+    padding-left: 36px;
+}
+.h4{
+    padding-bottom: 0%;
+    font-style: italic;
+    font-weight: 100;
+    text-decoration: none;
+}
+.login-buttton{
+    padding-left:120px;
+    padding-right: 100px;
+    
+    color: wheat;
+    width:30%;
+}
+.login-forgot-password{
+    padding-left:1px 
+}
+button:hover{
+    color: crimson;
+}
+/* .login{
+    background-image: url("https://images.unsplash.com/photo-1541233349642-6e425fe6190e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+} */
+.Register{
+    margin:auto;
+    width: 30%;
+    border: 3px solid lightgray;
+    padding-bottom: 5px;
+
+}
+.Register-name{
+    padding-left: 35px;
+    padding-bottom: 10px;
+}
+.Register-secondname{
+    padding-left: 35px;
+    padding-bottom: 10px;
+}
+.Register-email{
+    padding-left: 35px;
+    padding-bottom: 10px;
+
+}
+.Register-mobileno{
+    padding-left: 35px;
+    padding-bottom: 10px;
+}
+.Register-password{
+    padding-left: 35px;
+    padding-bottom: 10px;
+}
+.Register-passwordagain{
+    padding-left: 35px;
+    padding-bottom: 10px;
+}
+.Register-button{
+    padding-left: 120px;
+    padding-bottom: 1px;
+    padding-top: 10px;
+
+}
+.Register h1{
+    color:cadetblue;
+   
+   word-spacing: 100px;
+    width: 250px;
+    padding-left: 30px;
+    font-size: 30px;
+    text-align: center;
+    font-style: initial;
+    
+}
+.Regis{
+    margin-top: 0;
+}
+.link{
+    padding-left: 60px;
+}
+
+
+                              /* forgot password */
+
+
+.forgot{
+    margin:auto;
+    margin-top: 70px;
+    width: 30%;
+    
+    border: 3px solid lightgray;
+    padding: 10px; 
+}
+.forgot-email{
+   
+   
+    padding-left: 35px;
+}
+.forgot-button{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 123px;
+}
+.name{
+    text-align: center;
+    width: auto;
+    word-spacing: 10px;
+    font-style: initial;
+    color:cadetblue;
+}
+                /* ResetPassword */
+
+.Reset{
+    margin:auto;
+    margin-top: 70px;
+    width: 30%;
+    
+    border: 3px solid lightgray;
+    padding: 10px;
+}    
+.ResetPassword{
+    padding-bottom: 20px;
+    padding-left: 35px;
+    
+} 
+.ResetPassword-button{
+    padding-top:20px;
+    padding-left: 80px;
+}      
+.topic{
+    font-style: initial;
+    word-spacing: 10px;
+    color:cadetblue;
+    padding-left: 60px;
+}     
+

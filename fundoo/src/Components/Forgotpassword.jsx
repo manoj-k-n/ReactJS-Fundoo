@@ -54,16 +54,17 @@ export class Forgotpassword extends Component {
     
     render() {
         return (
-            <div>
-                <div>
+            <div className="forgot">
+                <h2 className="name">Forgot Password</h2>
+                <div className="forgot-email">
                   <TextFiled id="Email"
                   label="Email"
                   value={this.state.email}
                   variant="outlined"
                   onChange={this.onChangeemail}/>
                 </div>
-                <div>
-                    <button onClick={this.onclick}>Button</button>
+                <div className='forgot-button'>
+                    <button onClick={this.onclick}>Submite</button>
                 </div>
             </div>
         )

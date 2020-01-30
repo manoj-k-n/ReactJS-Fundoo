@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TextFiled from '@material-ui/core/TextField'
 import Controller from '../Controller/UserContoller'
 import { Snackbar } from '@material-ui/core'
+import './User.css';
 
 export class Login extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export class Login extends Component {
                     error:true,
                     message:'Login success'
                      } )
-                this.props.history.push("/")
+                this.props.history.push("/register")
 
              }
              else{
@@ -69,10 +70,13 @@ export class Login extends Component {
 
     render() {
         return (
-            <div>
+        
+            <div className='login'>
                 <Snackbar/> 
-                <div>
-                   
+                <h1 className='login-h1'> FUNDOO LOGIN</h1>
+                
+                <div className='login-email'>
+                  
                 <TextFiled id="Email"
                 value={this.state.Email}
                 label="Email"
@@ -80,7 +84,7 @@ export class Login extends Component {
                 onChange={this.onchangeEmail}/>
                 </div>
                          
-                <div>
+                <div className='login-password'>
                     <TextFiled id="password"
                     value={this.state.Password}
                     label="Password"
@@ -88,10 +92,17 @@ export class Login extends Component {
                     variant="outlined"
                     onChange={this.onchangePassword}/>
                 </div>
-                <div>
+                <div className='login-buttton'>
                     <button variant="outlined" onClick={this.onclick}>Submit</button>
                 </div>
+                <p className="login-forgot-password">
+                Registered <a href="/register">Registration?</a>  Forgot <a href="/forgot"> password?</a>
+                </p>
+                <p className="login-register">
+                     
+                </p>
             </div>
+         
         )
     }
 }

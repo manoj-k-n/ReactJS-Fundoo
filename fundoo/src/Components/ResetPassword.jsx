@@ -64,8 +64,9 @@ export class ResetPassword extends Component {
     
     render() {
         return (
-            <div>
-                <div>
+            <div className="Reset">
+                <h2 className="topic"> Reset Password</h2>
+                <div className="ResetPassword">
                 <TextFiled id="password"
                 label="Password"
                 type="password"
@@ -73,6 +74,7 @@ export class ResetPassword extends Component {
                 value={this.state.password}
                 onChange={this.onchangepassword}/>
                 </div>
+                <div className="ResetPassword">
                 <div>
                     <TextFiled id="passwordagain"
                     label="PasswordAgain"
@@ -81,8 +83,9 @@ export class ResetPassword extends Component {
                     value={this.state.passwordagain}
                     onChange={this.onchangepasswordagain}/>
                 </div>
-                <div>
-                    <button onClick={this.onChilkChanges}>Submmite</button>
+                <div className="ResetPassword-button">
+                    <button onClick={this.onChilkChanges}>Submite</button>
+                </div>
                 </div>
             </div>
         )

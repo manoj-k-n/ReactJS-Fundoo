@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import Controller from '../Controller/UserContoller'
 import SnackBar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
+import './User.css';
 
 export class Registration extends Component {
     constructor(props) {
@@ -131,7 +132,7 @@ export class Registration extends Component {
     render() {
         return (
             
-            <div>
+            <div className="Regis">
                 <SnackBar  
                  anchorOrigin={{vertical:'center',horizontal:'center'}}
                  open={this.state.error}
@@ -144,7 +145,10 @@ export class Registration extends Component {
                      arial-label="close"
                      color="white">X</IconButton>
                  ]} />
-                <div>
+                <div className="Register">
+                       <h1>FUNDOO REGISTRATION</h1>
+                   
+                    <div className="Register-name">
                 <TextField id="Name" 
                 label="Name" 
                 variant="outlined"
@@ -152,14 +156,14 @@ export class Registration extends Component {
                 onChange={this.onChangename}  />
                 </div>
                  
-                 <div>
+                 <div className="Register-secondname">
                      <TextField id="SecondName"
                      label="SecondName"
                      variant="outlined"
                      value={this.state.SecondName}
                      onChange={this.onchangeSecondName}/>
                  </div>
-                <div>
+                <div className="Register-email">
                 <TextField id="Email"
                 label="Email"
                 variant="outlined"
@@ -167,7 +171,7 @@ export class Registration extends Component {
                 onChange={this.onChangeEmail}/>
                 </div>
 
-                <div>
+                <div className="Register-mobileno">
              <TextField id="MobileNo"
              label="MobileNo"
              variant="outlined"
@@ -175,7 +179,7 @@ export class Registration extends Component {
              onChange={this.onChangeMobileNo}/>
               </div>
 
-                <div>
+                <div className="Register-password">
               <TextField id="Password"
               label="password"
               type="password"
@@ -184,7 +188,7 @@ export class Registration extends Component {
               onChange={this.onChangePassword}/>
                 </div>
 
-                <div>
+                <div className="Register-passwordagain">
 
                     <TextField id="passwordAgain"
                     label="Password"
@@ -194,10 +198,11 @@ export class Registration extends Component {
                     onChange={this.onChangePasswordAgain}/>
                 </div>
                
-                <div>
+                <div className="Register-button">
                     <button onClick={this.onSubmit}>Submit</button>
                 </div>
-              
+                <p className="link">user already exists           <a href="/login">login?</a></p>
+                </div>
             </div>
         )
     }
