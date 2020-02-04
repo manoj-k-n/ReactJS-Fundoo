@@ -57,6 +57,7 @@ export class ResetPassword extends Component {
                {
                 this.props.history.push("/login")
                const remove= localStorage.removeItem('token');
+               
                console.log("Yess"+remove)
                })
         }

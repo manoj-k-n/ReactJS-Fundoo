@@ -46,14 +46,16 @@ export class Login extends Component {
                 password:this.state.Password
             }
             Controller.login(logindetails).then((res)=>{
-             if(res.status===200)
+             if(res.data.messagecode===200)
              {
+                 console.log(res)
+                 console.log(res.status)
                    localStorage.setItem('logintoken',res.data.obj)
                    this.setState({
                     error:true,
                     message:'Login success'
                      } )
-                this.props.history.push("/register")
+                this.props.history.push("/dashbord")
 
              }
              else{

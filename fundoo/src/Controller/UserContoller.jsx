@@ -31,7 +31,8 @@ var contoller={
     {
         const tokenkey= localStorage.getItem('token')
         console.log(tokenkey)
-      return axios.post("http://localhost:8080/users/resetpassword/"+tokenkey,PasswordDetails)
+        console.log("Welcome...")
+      return axios.put("http://localhost:8080/users/resetpassword/"+tokenkey,PasswordDetails)
     }
 }
 export default contoller
