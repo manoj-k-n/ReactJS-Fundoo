@@ -172,3 +172,28 @@ button:hover{
 
 }
 
+/* splitbutton */
+
+#container {
+    visibility: hidden;
+}
+
+#loader {
+  color: #008cff;
+  height: 40px;
+  left: 45%;
+  position: absolute;
+  top: 45%;
+  width: 30%;
+}
+
+.e-btn-icon.e-image {
+    background: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AWindows_Settings_app_icon.png&psig=AOvVaw0FS0KxNF1ocGoon204-dG8&ust=1581058255507000&source=images&cd=vfe&ved=2ahUKEwjN5-OOq7znAhXd6jgGHWChAaMQr4kDegUIARDpAQ) -384px -48px;
+    width: 32px;
+    height: 32px;
+}
+
+button {
+  margin: 25px 5px 20px 20px;
+}
+

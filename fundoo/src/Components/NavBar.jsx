@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBCol, MDBIcon ,MDBInput} from "mdbreact";
-import { Nav } from 'react-bootstrap';
+import { Nav,DropdownButton,Dropdown } from 'react-bootstrap';
 import SideBar from './SideBar';
+import SettingsIcon from '@material-ui/icons/Settings';
+import IconButton from '@material-ui/core/IconButton';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { DropdownMenu, MenuItem,DropdownItem ,DropdownToggle} from 'react-bootstrap-dropdown-menu';
+
+
 
 export class NavBar extends Component {
     render() {
@@ -19,6 +25,21 @@ export class NavBar extends Component {
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
               </div>
             </form>
+           
+            </div>
+            <div>
+            {/* <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>
+        Button Dropdown
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem header>Header</DropdownItem>
+        <DropdownItem disabled>Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem>Another Action</DropdownItem>
+      </DropdownMenu>
+    </ButtonDropdown> */}
             </div>
           </div> 
           </nav>

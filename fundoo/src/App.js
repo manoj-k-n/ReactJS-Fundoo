@@ -9,7 +9,13 @@ import ResetPassword from './Components/ResetPassword';
 import DashBord from './Components/DashBord'
 import LogOut from './Components/LogOut';
 import NavBar from './Components/NavBar';
-// import SideNavPage from './Components/SideNavPage';
+import Label from './Components/Label';
+import SideBar from './Components/SideBar'
+import Creatlabel from './Components/Creatlabel';
+
+
+import createnote from './Components/createnote'
+
  
 
 
@@ -25,7 +31,11 @@ function App() {
       
       <Route path="/dashbord" component={DashBord}/>
       <Route path="/logout"  component={LogOut}/>
-      {/* <Route path="/sidenav" component={SideNavPage}/> */}
+      <Route path="/sidenav" component={SideBar}/>
+      <Route path="/label" component={Label}/>
+      <Route path="/creatlabel" component={Creatlabel}/>
+     
+       <Route path="/note" component={createnote}/>
     
       </Router>
   
