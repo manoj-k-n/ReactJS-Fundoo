@@ -32,7 +32,16 @@ var contoller={
         const tokenkey= localStorage.getItem('token')
         console.log(tokenkey)
         console.log("Welcome...")
-      return axios.put("http://localhost:8080/users/resetpassword/"+tokenkey,PasswordDetails)
+      return axios.put("http://localhost:8080/users/resetpassword/"+tokenkey,PasswordDetails,{'Content-Type':'application/json'})
+    },
+
+    createNotes(notedetails)
+    {
+        const tokenkey=localStorage.getItem('logintoken')
+        console.log(tokenkey)
+        console.log("token is comming")
+        
+        return axios.post("http://localhost:8080/notes/"+tokenkey,notedetails)
     }
 }
 export default contoller

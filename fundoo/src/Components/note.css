@@ -1,0 +1,50 @@
+.main_div {
+    display: flex;
+    justify-content: center;
+    margin-top: 7em;
+  }
+  .main_card {
+    padding: 5px;
+    height: 40px;
+    width: 28em;
+  }
+  .Card {
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: center;
+  }
+  .icons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+   
+  }
+  .Inpute{
+    /* display: flex; */
+  }
+  .iconChanges{
+    display: flex;
+    padding-left:49px ; 
+  }
+
+
+  /* notedisplay */
+
+  .title-1{
+    display: flex;
+
+  }
+  .pinicon{
+      padding-left: 195px;
+  }
+  .main_card1 {
+    padding: 5px;
+    height: 160px;
+    width: 30em;
+  }
+  .notificationrow{
+    display: flex;
+    
+    justify-content: space-between;
+
+  }
