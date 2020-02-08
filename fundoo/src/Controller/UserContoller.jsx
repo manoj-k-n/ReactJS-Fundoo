@@ -5,6 +5,7 @@ require('dotenv').config()
 
 let headers={
     'Content-Type':'application/json',
+    'token':localStorage.getItem('logintoken')
     // 'Content-Type': 'application/x-www-form-urlencoded'
     // 'token':localStorage.getItem('token')
 }
@@ -25,7 +26,7 @@ var contoller={
     },
     Forgot(forgotdetails)
     {
-        return axios.post("http://localhost:8080/users/forgotpassword",forgotdetails)
+        return axios.post("http://localhost:8080/users/forgotpassword",forgotdetails,headers)
     },
     resetpassword(PasswordDetails)
     {
@@ -42,6 +43,14 @@ var contoller={
         console.log("token is comming")
         
         return axios.post("http://localhost:8080/notes/"+tokenkey,notedetails)
+    },
+
+    getAllNotes()
+    {
+        
+       const token=localStorage.getItem('logintoken')
+        console.log("Comming....")
+        return axios.get("http://localhost:8080/getAll/"+token)
     }
 }
 export default contoller
