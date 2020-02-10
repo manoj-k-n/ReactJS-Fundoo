@@ -132,7 +132,7 @@ class createNote extends Component {
          
           <div className="main_div">
             
-        <Card  className="main_card1" style={{ bootshadow: "5px 5px 5px 5px" }}>
+        <Card  className="main_card1" style={{ bootshadow: "10px 10px 10px 10px" }}>
           <div>
             <div>
 
