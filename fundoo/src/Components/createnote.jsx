@@ -17,6 +17,11 @@ import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import IconButton from '@material-ui/core/IconButton';
 import Controller from '../Controller/UserContoller';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Menu from '@material-ui/core/Menu';
+import { Paper, ClickAwayListener, MenuList,MenuItem,Popper,Grow } from "@material-ui/core";
+
+
 
 class createNote extends Component {
   constructor(props) {
@@ -29,10 +34,9 @@ class createNote extends Component {
       pin:false,
       reminder:false,
       archive:false,
-      colour:''
- 
-      
-       
+      colour:'',
+      propper:false,
+      menu:false   
     }
     console.log(this.state.title)
   }
@@ -57,16 +61,13 @@ class createNote extends Component {
   {
      this.setState({take_a_note:event.target.value})
   }
+  handleToggle=()=>{
+    this.setState({menu:true})
+  }
 
-  // changePin=()=>{
-  //  this.setState({pin:true})
-  // }
-  //  changeArchive=()=>{
-  //    this.setState({archive:true})
-  //  }
-
-
-  // details passing
+  openMenu=()=>{
+    this.setState({menu:true})
+  }
 
   settheelements=()=>
   {
@@ -93,6 +94,13 @@ class createNote extends Component {
     var archive={
 
     }
+  }
+  handleToggle=()=>{
+this.setState({propper:!this.state.propper})
+  }
+
+  MenuClose=()=>{
+    this.setState({menu:false})
   }
 
 
@@ -178,7 +186,16 @@ class createNote extends Component {
                   </div>
                   <div>
                   <IconButton>
-                     <MoreVertIcon style={{ fontSize:15 }}/>
+                     <MoreVertIcon style={{ fontSize:15 }} onClick={this.openMenu}/>
+                     <div >
+                                <Menu open={this.state.menu} className="Menu">
+                                    
+                                    <MenuItem onClick={this.MenuClose}>Add label</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
+                                    
+                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
+                                </Menu>
+                                </div>
                     </IconButton>
                   </div>
                   <div>

@@ -15,6 +15,7 @@ export class DashBord extends Component {
         this.state = {
             dialogOpen: false,
             notes: []
+            
         }
     }
     handleDialog = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Controller from '../Controller/UserContoller';
-import { Card, } from '@material-ui/core';
+import { Card, Tooltip, } from '@material-ui/core';
 import "./note.css";
 import InputBase from "@material-ui/core/InputBase";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
@@ -16,6 +16,10 @@ import Dialog from '@material-ui/core/Dialog';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import Menu from '@material-ui/core/Menu';
+
 
 
 
@@ -37,6 +41,25 @@ export class getNotes extends Component {
              pin_note:false,
              colour:"",
               trans :false,
+              menu:false,
+              colour:
+              [{ name: "default", colorCode: "#FDFEFE" },
+              { name: "Red", colorCode: "#ef9a9a" },
+              { name: "Cyan", colorCode: "#80deea" },
+              { name: "Blue", colorCode: "#2196f3" },
+              { name: "Indigo", colorCode: "#9fa8da" },
+              { name: "LightBlue", colorCode: "#90caf9" },
+              { name: "Purple", colorCode: "#b39ddb" },
+              { name: "Yellow", colorCode: "#c5e1a5" },
+              { name: "Lime", colorCode: "#e6ee9c" },
+              { name: "Pink", colorCode: "#f48fb1" },
+              { name: "gray", colorCode: "#eeeeee" },
+              { name: "Brown", colorCode: "#bcaaa4" },
+            ],
+
+            defaultColour:"#FDFEFE",
+            opencolourBox:false,
+
           
         }
 
@@ -60,8 +83,35 @@ export class getNotes extends Component {
     // changedilogbox=()=>{
     //     this.setState({})
     // }
+    menuOpen=()=>{
+        this.setState({menu:true})
+    }
+    MenuClose=()=>{
+        this.setState({menu:false})
+      }
+      changeNoteColour=(event)=>{
+          this.setState({defaultColour:event.target.value})
+      }
+
+      changeColour=()=>{
+          this.setState({opencolourBox:true})
+      }
+      closeColourBox=()=>{
+          this.setState({opencolourBox:false})
+      }
    
     render() {
+        const colour=this.state.colour.map((colour)=>{
+            return(
+                <div>
+                <Tooltip title={colour.name}>
+            <IconButton style={{background:colour.colorCode}} value={colour.colorCode} onClick={this.changeNoteColour}/>
+            </Tooltip>
+            </div>
+            )
+            
+        })
+
         return ! this.state.open ? (
             <div className="getNotesContainer">
                 {/* <Dialog open={this.state.open} > */}
@@ -122,7 +172,7 @@ export class getNotes extends Component {
                 <Dialog open={this.state.dilogbox}  onClose={this.handleClose}>
                <div >
             
-                    <Card className="dilogBox_card">
+                    <Card className="dilogBox_card" style={{background:this.state.defaultColour}}>
                         <div>
                            <div className="dilogBox_fistrow" >
                            <div>
@@ -151,7 +201,13 @@ export class getNotes extends Component {
                             </div>
                             <div>
                                 <IconButton >
-                                <ColorLensIcon style={{ fontSize: 15 }} />
+                                <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox}>
+                                    <div className="colour_row">
+                                    {colour}
+                                    </div>
+
+                                </Menu>
                                 </IconButton>
                             </div>
                             <div>
@@ -166,7 +222,17 @@ export class getNotes extends Component {
                             </div>
                             <div>
                                 <IconButton >
-                                <MoreVertIcon style={{ fontSize: 15 }} />
+                                <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
+                                <div >
+                                <Menu open={this.state.menu} className="Menu">
+                                    <MenuItem onClick={this.MenuClose}>Delet note</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
+                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                </Menu>
+                                </div>
                                 </IconButton>
                             </div>
                           

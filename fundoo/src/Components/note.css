@@ -112,3 +112,10 @@
   width: 100%;
   height: 90%;
 }
+.Menu{
+  padding-right: 70m;
+}
+.colour_row{
+  display: flex;
+  
+}

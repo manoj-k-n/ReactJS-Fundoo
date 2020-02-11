@@ -16,6 +16,7 @@ import Creatlabel from './Components/Creatlabel';
 import getNotes from './Components/GetNotes'
 import createnote from './Components/createnote'
 import DilogBox  from './Components/DilogBox';
+import Icon from './Components/Icon'
  
 
 
@@ -38,6 +39,7 @@ function App() {
        <Route path="/note" component={createnote}/>
        <Route path="/getnotes" component={getNotes}/>
        <Route path="/dialog" component={DilogBox}/>
+       <Route path="/icon" component={Icon}/>
       </Router>
   
   );
