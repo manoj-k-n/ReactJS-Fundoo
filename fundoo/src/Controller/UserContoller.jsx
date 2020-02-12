@@ -51,6 +51,37 @@ var contoller={
        const token=localStorage.getItem('logintoken')
         console.log("Comming....")
         return axios.get("http://localhost:8080/getAll/"+token)
+    },
+
+    editeNotes(edite,id)
+    {
+        const token=localStorage.getItem("logintoken")
+        console.log("edtting.../")
+        console.log(edite)
+        return axios.put("http://localhost:8080/editNotes/"+id+"/"+token,edite)
+    },
+
+    changePin(id)
+    {
+        console.log(id,"ideee")
+        
+     const token=localStorage.getItem("logintoken")
+     console.log(token,"tokennn")
+     return axios.put("http://localhost:8080/pin/"+id+"/"+token)
+    },
+
+    changeArchive(id)
+    {
+        console.log(id,"idee")
+        const token=localStorage.getItem("logintoken")
+      return axios.put("http://localhost:8080/archive/"+id+"/"+token)
+    },
+
+    changeTrans(id)
+    {
+        const token=localStorage.getItem("logintoken")
+        return axios.put("http://localhost:8080/trash/"+id+"/"+token)
     }
+    
 }
 export default contoller

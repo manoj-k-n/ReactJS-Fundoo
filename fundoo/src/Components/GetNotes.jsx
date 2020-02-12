@@ -17,11 +17,7 @@ import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import Menu from '@material-ui/core/Menu';
-
-
-
 
 export class getNotes extends Component {
     constructor(props) {
@@ -31,18 +27,18 @@ export class getNotes extends Component {
             notes: [],
             title: this.props.data.title,
             take_a_note: this.props.data.take_a_note,
+            id:this.props.data.id,
+            archive:this.props.data.archive,
+            pin_note:this.props.data.pin_note,
+            colour:this.props.data.colour,
+             trans :this.props.data.trans,
+
+
             open:false,
             dilogbox:true,
-             //  open:false,
-            // title:this.props.details.title,
-            //  take_a_note:this.props.details.take_a_note,
-            //  id:this.props.details.id,
-              archive:false,
-             pin_note:false,
-             colour:"",
-              trans :false,
               menu:false,
-              colour:
+
+              manycolour:
               [{ name: "default", colorCode: "#FDFEFE" },
               { name: "Red", colorCode: "#ef9a9a" },
               { name: "Cyan", colorCode: "#80deea" },
@@ -89,19 +85,64 @@ export class getNotes extends Component {
     MenuClose=()=>{
         this.setState({menu:false})
       }
+      changeColour=()=>{
+        this.setState({opencolourBox:true})
+    }
+    closeColourBox=()=>{
+        this.setState({opencolourBox:false})
+    }
+
+    closeMenuList=()=>{
+        this.setState({menu:false})
+    }
+    changePin=()=>{
+        this.setState({pin_note:!this.state.pin_note})
+        Controller.changePin(this.state.id).then((value)=>{
+            console.log(value)
+        })
+    } 
+     changeArchive=()=>{
+         this.setState({archive:!this.state.archive})
+         Controller.changeArchive(this.state.id).then((value)=>{
+             console.log(value)
+         })
+     }
+
+     changeTrans=()=>{
+         this.setState({trans:!this.state.trans},{menu:false})
+         Controller.changeTrans(this.state.id).then((value)=>{
+             console.log(value)
+         })
+     }
+
       changeNoteColour=(event)=>{
-          this.setState({defaultColour:event.target.value})
+          this.setState({colour:event.target.value})
+          console.log(this.state.colour)
+          console.log("Invalid..........")
+         var edite={
+            colour:this.state.colour,
+            title:this.state.title,
+            take_a_note:this.state.take_a_note,
+            archive:this.state.archive,
+            pin_note:this.state.pin_note,
+            transh:this.state.trans,
+         }
+        
+         console.log("colourtype",edite)
+         Controller.editeNotes(edite,this.state.id).then((value)=>{
+             if(value.data.messagecode===200)
+             {
+                 console.log(".................")
+             }
+             else{
+                 console.log("//////////////")
+             }
+         })
+
       }
 
-      changeColour=()=>{
-          this.setState({opencolourBox:true})
-      }
-      closeColourBox=()=>{
-          this.setState({opencolourBox:false})
-      }
-   
     render() {
-        const colour=this.state.colour.map((colour)=>{
+        const colour1=this.state.manycolour.map((colour)=>{
             return(
                 <div>
                 <Tooltip title={colour.name}>
@@ -115,51 +156,83 @@ export class getNotes extends Component {
         return ! this.state.open ? (
             <div className="getNotesContainer">
                 {/* <Dialog open={this.state.open} > */}
-                <Card className="main_card12" onClick={this.openDilog} >
+                <Card className="main_card12"  style={{background:this.state.colour}} >
                     <div>
                         <div className="fist_row_card">
                             <div className="title_space">
-                                <InputBase value={this.state.title} />
+                                <InputBase value={this.state.title}  onClick={this.openDilog} />
                             </div>
                             <div className="icon_1st_row">
-                                <IconButton >
+                                <Tooltip title="Pin">
+                                <IconButton onClick={this.changePin}>
                                     <NotificationsNoneTwoToneIcon style={{ fontSize: 18 }} />
                                 </IconButton>
+                                </Tooltip>
                             </div>
                         </div>
                         <div className="second_row_card ">
-                            <InputBase value={this.state.take_a_note}  />
+                            <InputBase value={this.state.take_a_note}  onClick={this.openDilog} />
                         </div>
                         <div className="finalrow_card">
                             <div>
+                                <Tooltip title="Reminder Me">
                                 <IconButton >
                                     <NotificationImportantIcon style={{ fontSize: 15 }} />
                                 </IconButton>
+                                </Tooltip>
                             </div>
                             <div>
+                            <Tooltip title="Collaboratore">
                                 <IconButton>
                                     <PersonAddIcon style={{ fontSize: 15 }} />
                                 </IconButton>
+                                </Tooltip>
                             </div>
                             <div>
+                            <Tooltip title="Colour Change">
                                 <IconButton>
-                                    <ColorLensIcon style={{ fontSize: 15 }} />
+                                <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox} className="ColourBox">
+                                    <div className="colour_row1">
+                                    {colour1}
+                                    </div>
+
+                                </Menu>
                                 </IconButton>
+                                </Tooltip>
                             </div>
                             <div>
+                            <Tooltip title="Add image">
                                 <IconButton>
                                     <ImageIcon style={{ fontSize: 15 }} />
                                 </IconButton>
+                                </Tooltip>
                             </div>
                             <div>
-                                <IconButton >
+                                <Tooltip title="Archive">
+                                <IconButton  onClick={this.changeArchive}>
                                     <ArchiveTwoToneIcon style={{ fontSize: 15 }} />
                                 </IconButton>
+                                </Tooltip>
                             </div>
                             <div>
+                                <Tooltip title="More">
                                 <IconButton>
-                                    <MoreVertIcon style={{ fontSize: 15 }} />
+                                <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
+                                <div >
+                                <Menu open={this.state.menu} onClose={this.closeMenuList} className="Menu_">
+                                    <div className="MenuItem"> 
+                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
+                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
+                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                    </div>
+                                </Menu>
+                                </div>
                                 </IconButton>
+                                </Tooltip>
                             </div>
                         </div>
                     </div>
@@ -167,25 +240,26 @@ export class getNotes extends Component {
                 {/* </Dialog>         */}
                  </div>
         ):(
+           
             <div className="dilog_card">
                 
                 <Dialog open={this.state.dilogbox}  onClose={this.handleClose}>
                <div >
             
-                    <Card className="dilogBox_card" style={{background:this.state.defaultColour}}>
+                    <Card className="dilogBox_card" style={{background:this.state.colour}}>
                         <div>
                            <div className="dilogBox_fistrow" >
                            <div>
-                           <InputBase value={this.state.title}  onChange={this.changeTitle}/>
+                           <InputBase value={this.state.title}  onChange={this.changeTitle} placeholder="Title"/>
                            </div>
                            <div>
-                           <IconButton >
+                           <IconButton  onClick={this.changePin}>
                                     <NotificationsNoneTwoToneIcon style={{ fontSize: 18 }} />
                                 </IconButton>
                            </div>
                            </div>
                            <div>
-                           <InputBase value={this.state.take_a_note} onChange={this.changeTake} />
+                           <InputBase value={this.state.take_a_note} onChange={this.changeTake} placeholder="Title" />
                            </div>
                            <div>
                               <div className="dilogBox_third_row">
@@ -202,9 +276,9 @@ export class getNotes extends Component {
                             <div>
                                 <IconButton >
                                 <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
-                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox}>
+                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox} className="ColourBox">
                                     <div className="colour_row">
-                                    {colour}
+                                    {colour1}
                                     </div>
 
                                 </Menu>
@@ -224,13 +298,15 @@ export class getNotes extends Component {
                                 <IconButton >
                                 <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
                                 <div >
-                                <Menu open={this.state.menu} className="Menu">
+                                <Menu open={this.state.menu} onClose={this.closeManuList} className="Menu_">
+                                    <div className="MenuItem"> 
                                     <MenuItem onClick={this.MenuClose}>Delet note</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
                                     <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                    </div>
                                 </Menu>
                                 </div>
                                 </IconButton>

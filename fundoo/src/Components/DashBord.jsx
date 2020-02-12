@@ -7,8 +7,6 @@ import DialogBox from './DilogBox'
 import Controller from '../../src/Controller/UserContoller'
 import "./note.css";
 
-
-
 export class DashBord extends Component {
     constructor(props) {
         super(props);
@@ -24,15 +22,18 @@ export class DashBord extends Component {
     componentDidMount() {
 
         Controller.getAllNotes().then((res) => {
-            console.log("res in getnotes", res.data.obj)
+           
             this.setState({ notes: res.data.obj })
             console.log("Notes...", this.state.notes)
         })
     }
     render() {
         let getNotes = this.state.notes.map(item => {
-            console.log("item", item)
+            console.log("item.......", item)
+            
+            
             return (
+              
                 <GetNotes data={item} handleDialog={this.handleDialog} />
             )
         })
@@ -46,7 +47,10 @@ export class DashBord extends Component {
         return (
             <div>
                 {/* <NavBar/> */}
+                <div>
                 <Createnote />
+                </div>
+                
                 <div className="getNotesContainer">
                     {getNotes}
                 </div>
