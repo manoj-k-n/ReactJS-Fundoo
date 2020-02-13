@@ -165,7 +165,7 @@ export class getNotes extends Component {
                             <div className="icon_1st_row">
                                 <Tooltip title="Pin">
                                 <IconButton onClick={this.changePin}>
-                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 18 }} />
+                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 15 }} />
                                 </IconButton>
                                 </Tooltip>
                             </div>
@@ -244,38 +244,39 @@ export class getNotes extends Component {
             <div className="dilog_card">
                 
                 <Dialog open={this.state.dilogbox}  onClose={this.handleClose}>
-               <div >
+               <div  >
             
                     <Card className="dilogBox_card" style={{background:this.state.colour}}>
-                        <div>
+                        <div className="DilogCard">
                            <div className="dilogBox_fistrow" >
-                           <div>
+                           <div className="title_text">
                            <InputBase value={this.state.title}  onChange={this.changeTitle} placeholder="Title"/>
                            </div>
-                           <div>
+                           <div className="pinIconDilogBox">
                            <IconButton  onClick={this.changePin}>
-                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 18 }} />
+                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 20 }} />
                                 </IconButton>
                            </div>
                            </div>
                            <div>
                            <InputBase value={this.state.take_a_note} onChange={this.changeTake} placeholder="Title" />
                            </div>
+                           <div className="fullRow">
                            <div>
                               <div className="dilogBox_third_row">
                               <div>
                                 <IconButton >
-                                    <NotificationImportantIcon style={{ fontSize: 15 }} />
+                                    <NotificationImportantIcon style={{ fontSize: 18 }} />
                                 </IconButton>
                             </div>
                             <div>
                                 <IconButton >
-                                <PersonAddIcon style={{ fontSize: 15 }} />
+                                <PersonAddIcon style={{ fontSize: 18 }} />
                                 </IconButton>
                             </div>
                             <div>
                                 <IconButton >
-                                <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                <ColorLensIcon style={{ fontSize: 18 }} onClick={this.changeColour}/>
                                 <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox} className="ColourBox">
                                     <div className="colour_row">
                                     {colour1}
@@ -286,21 +287,21 @@ export class getNotes extends Component {
                             </div>
                             <div>
                                 <IconButton >
-                                <ImageIcon style={{ fontSize: 15 }} />
+                                <ImageIcon style={{ fontSize: 18 }} />
+                                </IconButton>
+                            </div>
+                            <div>
+                                <IconButton  onClick={this.changeArchive}>
+                                <ArchiveTwoToneIcon style={{ fontSize: 18 }} />
                                 </IconButton>
                             </div>
                             <div>
                                 <IconButton >
-                                <ArchiveTwoToneIcon style={{ fontSize: 15 }} />
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton >
-                                <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
+                                <MoreVertIcon style={{ fontSize: 18 }} onClick={this.menuOpen} />
                                 <div >
                                 <Menu open={this.state.menu} onClose={this.closeManuList} className="Menu_">
                                     <div className="MenuItem"> 
-                                    <MenuItem onClick={this.MenuClose}>Delet note</MenuItem>
+                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
                                     <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
@@ -314,21 +315,26 @@ export class getNotes extends Component {
                           
                             <div>
                   <IconButton>
-                     <RotateLeftIcon style={{ fontSize:15 }}/>
+                     <RotateLeftIcon style={{ fontSize:18 }}/>
                      </IconButton>
                   </div>
                   <div>
                   <IconButton>
-                     <RotateRightIcon style={{ fontSize:15 }}/>
+                     <RotateRightIcon style={{ fontSize:18 }}/>
                      </IconButton>
                   </div>
-                  <div>
-                  <Button onClick={this.handleClose} color="primary">
-                             Close
-                   </Button>
                   </div>
-                              </div>
+                  </div>
+                  <div className="closeIcon1111">
+                  
+                      <Button onClick={this.handleClose} >
+                             <h5 style={{ fontSize: 18 ,}} className="close">Close</h5>
+                             </Button>
+                   
+                  </div>
+                             
                            </div>
+                        
                         </div>
               </Card>
                      

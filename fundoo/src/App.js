@@ -15,9 +15,10 @@ import Creatlabel from './Components/Creatlabel';
 
 import getNotes from './Components/GetNotes'
 import createnote from './Components/createnote'
-import DilogBox  from './Components/DilogBox';
+
 import Icon from './Components/Icon'
 import AppBar from './Components/AppNav';
+import sideNav from './Components/sideNav';
  
 
 
@@ -39,9 +40,10 @@ function App() {
      
        <Route path="/note" component={createnote}/>
        <Route path="/getnotes" component={getNotes}/>
-       <Route path="/dialog" component={DilogBox}/>
+      
        <Route path="/icon" component={Icon}/>
        <Route path="/app" component={AppBar}/>
+       <Route path="/side" component={sideNav}/>
       </Router>
   
   );

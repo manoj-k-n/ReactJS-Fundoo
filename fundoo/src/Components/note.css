@@ -1,7 +1,7 @@
 .main_div {
     display: flex;
     justify-content: center;
-    margin-top: 9em;
+    margin-top: 5%;
   }
   .main_card {
     padding: 5px;
@@ -64,6 +64,10 @@
     
 
   }
+
+  /* .Pinicon{
+    padding-left: 90%;
+  } */
   .main_card12{
     width: 15em;
     height: 7.5em;
@@ -76,15 +80,21 @@
     padding-left:11px ;
     
   }
+  .closeIcon1111{
+    padding-right: 18%;
+    padding-top: 1%;
+  }
   .second_row_card{
     padding-left:11px ;
+    
   }
   .finalrow_card{
     display: flex;
     justify-content: space-between;
+    padding-right: 7%;
   }
   .icon_1st_row{
-    padding-left: 6.5em;
+    padding-left: 0.5em;
   }
   /* .title_space{
     padding-top: 10px;
@@ -93,7 +103,19 @@
   padding-top: 9px;
   display:flex;
   flex-wrap: wrap;
-  
+  /* padding-left: 15%; */
+}
+.pinIconDilogBox{
+  padding-left: 32%;
+}
+.noteSize{
+  padding-left:18%;
+}
+.DilogCard{
+  padding: 5%;
+}
+.textfield{
+  padding-right: 15%;
 }
 
 /* DilogBox_Css */
@@ -103,14 +125,30 @@
   /* height: 30%;
   width: 70%; */
 }
+.title_text{
+
+}
 
 .dilogBox_third_row{
   display: flex;
+  padding-right: 17%;
 }
+.fullRow{
+  display: flex
+  ;
+}
+/* .closeicon{
+  padding-right: 13%;
+  padding-top: 1%;
+} */
 
 .dilog_card{
   width: 100%;
   height: 90%;
+}
+
+.close{
+  width:2%
 }
 .Menu{
   padding-right: 70m;
@@ -144,3 +182,11 @@
   
   display: flex;
 }
+
+                                  /* PinNotes */
+
+  .pinname{
+    padding-top:2%;
+   color: dimgrey; 
+   font-size: 2;
+  }                                
