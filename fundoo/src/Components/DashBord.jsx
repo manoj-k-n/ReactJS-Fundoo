@@ -7,8 +7,9 @@ import Controller from '../../src/Controller/UserContoller'
 import "./note.css";
 import AppNav from './AppNav'
 import { ListItemSecondaryAction } from '@material-ui/core';
-import PinNotes from './PinNotes';
+
 import SideNav from './sideNav';
+import SideBar from './SideBar'
 
 
 export class DashBord extends Component {
@@ -17,7 +18,13 @@ export class DashBord extends Component {
         this.state = {
             dialogOpen: false,
             notes: [],
-            sideNavstate:false
+            sideNavstate:false,
+            Archive:false,
+            trans:false,
+            reminder:false,
+            createNotesDisplay:true,
+
+
            
             
         }
@@ -39,15 +46,22 @@ export class DashBord extends Component {
     render() 
     
     {
+        let createNote  
+        if(this.state.createNotesDisplay)
+        {
+            console.log("commmmmmmmm")
+            createNote=<Createnote/>
+        } 
+
+
         let getNotes = this.state.notes.map(item => {
-            console.log("item.......", item)
+            console.log("hii",item)
             
-            console.log(" helll",item.pin_Note)
-            
-            
-              if(item.pin_Note==false)
+              if(!item.pin_note && this.state.createNotesDisplay && !item.archive && !item.trash)
               {
-                console.log("hello...........///////",item.pin_note)
+                console.log("hello...........///////",item.pin_note,item.Archive,item.trans)
+                console.log(item.Archive)
+                console.log(item.trans)
                 return (
                     <GetNotes data={item} handleDialog={this.handleDialog} />
                     )
@@ -63,11 +77,7 @@ export class DashBord extends Component {
               }
 
         })
-        // let sidenav=(()=>if(this.state.sideNav)
-        //     {
-                
-        //     }}
-
+       
         let appNav= <AppNav sideopen={this.handleside}/>
         let sideNav
         if(this.state.sideNavstate)
@@ -75,14 +85,34 @@ export class DashBord extends Component {
             console.log("?????????",this.state.sideNavstate)
             sideNav =<SideNav/>
         }
+
+       
+        let Archive=this.state.notes.map((items)=>{
+            if(this.state.Archive && items.archive)
+        {
+           return <GetNotes data={items} handleDialog={this.handleDialog} />
+        }
+
+        })
+     
+        let trans=this.state.notes.map((item)=>{
+            if(item.trash)
+            {
+               return <GetNotes data={item} handleDialog={this.handleDialog} />
+            }
+        })
+
+        
       
         return (
             <div>
+                
                {appNav}
-               {sideNav}
-
                 <div>
-                <Createnote />
+                {createNote}
+                {trans}
+                {Archive}
+                
                 
                 </div>
                

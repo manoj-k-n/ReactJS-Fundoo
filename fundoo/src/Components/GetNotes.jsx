@@ -31,7 +31,7 @@ export class getNotes extends Component {
             archive:this.props.data.archive,
             pin_note:this.props.data.pin_note,
             colour:this.props.data.colour,
-             trans :this.props.data.trans,
+            trans :this.props.data.trans,
 
 
             open:false,

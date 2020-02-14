@@ -21,7 +21,7 @@ export class sideNav extends Component {
                     </div>
 
 
-
+    
                     <div className="note_sidenav">
                    
                    <div className="IconSide">

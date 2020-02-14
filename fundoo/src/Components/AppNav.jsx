@@ -90,8 +90,6 @@ export class AppBar extends Component {
                  </div>
                              
                  </div>
-
-
                  </div>
                 </Card>
             </div>

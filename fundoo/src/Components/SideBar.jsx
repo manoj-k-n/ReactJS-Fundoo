@@ -1,97 +1,105 @@
-
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import DehazeIcon from '@material-ui/icons/Dehaze';
-// import { Label } from 'react-bootstrap';
-import LabelIcon from '@material-ui/icons/Label';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import AddAlertIcon from '@material-ui/icons/AddAlert';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import EditIcon from '@material-ui/icons/Edit';
-import Label from './Label';
 
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
+const drawerWidth = 240;
 
-export default function TemporaryDrawer() {
+const useStyles = makeStyles(theme => ({
+  
+
+  
+  drawerPaper: {
+    width: drawerWidth,
+  },
+ 
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+
+  },
+}));
+
+export default function PersistentDrawerLeft() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [side]: open });
-  };
-
-  const sideList = side => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Notes','Reminder'].map((text, index) => (
-          <ListItem button key='/hello'>
-            <ListItemIcon>{index % 2 === 0 ?<EmojiObjectsIcon /> : <AddAlertIcon /> }</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      
-     <div>
-     <Label/>
-     </div>
-
-      <Divider />
-      <List>
-        {['Archive','Bin'].map((text, index) => (
-          <ListItem button key='/hello'>
-            <ListItemIcon>{index % 2 === 0 ? <ArchiveIcon color="action"/> : <DeleteOutlineIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      
-      
-    </div>
-  );
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
 
 
   return (
-    <div>
-      <Button onClick={toggleDrawer('left', true)}><DehazeIcon/></Button>
-    
-      <Drawer open={state.left} >
-        {sideList('left')}
-      </Drawer>
+    <div className={classes.root}>
      
+      
+      <Drawer
+        className={classes.drawer}
+        variant="persistent"
+        anchor="left"
+        open={true}
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+       
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        <Typography paragraph>
+      
+        </Typography>
+        <Typography paragraph>
+      
+        </Typography>
+      </main>
     </div>
   );
 }
-
