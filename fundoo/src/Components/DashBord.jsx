@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import NavBar from './NavBar'
-import SideBar from './SideBar'
+
 import Createnote from './createnote'
 import GetNotes from './GetNotes';
 
@@ -9,13 +8,17 @@ import "./note.css";
 import AppNav from './AppNav'
 import { ListItemSecondaryAction } from '@material-ui/core';
 import PinNotes from './PinNotes';
+import SideNav from './sideNav';
+
 
 export class DashBord extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dialogOpen: false,
-            notes: []
+            notes: [],
+            sideNavstate:false
+           
             
         }
     }
@@ -29,6 +32,9 @@ export class DashBord extends Component {
             this.setState({ notes: res.data.obj })
             console.log("Notes...", this.state.notes)
         })
+    }
+    handleside=()=>{
+        this.setState({sideNavstate:!this.state.sideNavstate})
     }
     render() 
     
@@ -50,23 +56,36 @@ export class DashBord extends Component {
             }) 
         
         
-          const getPinNotes=this.state.notes.map((pin)=>{
+          let getPinNotes=this.state.notes.map((pin)=>{
               if(pin.pin_Note)
               {
                return(<GetNotes data={pin} handleDialog={this.handleDialog}/>)
               }
 
         })
-      
+        // let sidenav=(()=>if(this.state.sideNav)
+        //     {
+                
+        //     }}
 
+        let appNav= <AppNav sideopen={this.handleside}/>
+        let sideNav
+        if(this.state.sideNavstate)
+        {
+            console.log("?????????",this.state.sideNavstate)
+            sideNav =<SideNav/>
+        }
+      
         return (
             <div>
-                <AppNav/>
+               {appNav}
+               {sideNav}
+
                 <div>
                 <Createnote />
+                
                 </div>
-
-
+               
                 <div className="noteSize">
                     <div className="pinname">PINNED</div>
                     
@@ -74,16 +93,14 @@ export class DashBord extends Component {
                     {getPinNotes}
                 </div>
                 </div>
-               
-
-
+             
                 <div className="noteSize">
                 <div className="pinname">OTHERS</div>
                 <div className="getNotesContainer">
                     {getNotes}
                 </div>
                 </div>
-                   
+               
                
             </div>
         )

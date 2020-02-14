@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 export class AppBar extends Component {
 
-    render() {
+    render(props) {
         return (
             <div className='App_Nav'>
                 <Card className="App_Card">
@@ -19,7 +19,7 @@ export class AppBar extends Component {
                 <div className="InputeBase">       
                 <div className="menuIcon">
                     <Tooltip title="Main Menu">
-                        <IconButton>
+                        <IconButton onClick={this.props.sideopen}>
                         <MenuIcon/>
                         </IconButton>
                         </Tooltip>

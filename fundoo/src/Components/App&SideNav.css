@@ -57,7 +57,33 @@
               /* Sidenav css */
 
 .Drawer{
-   width: 20%;
+   /* width: 20%;
    margin: 20%;
-   padding-right: 20%;
-}              
+   padding-right: 20%; */
+   height: 100%;
+   background: white;
+   box-shadow: -2px 0px 1px;
+   
+   top:0;
+   left: 0;
+   width: 197px;
+   margin-top: 2px;
+}  
+
+.swipeableDrawer{
+    width: 20%;
+}
+
+.note_sidenav{
+    width: 100%;
+    display: flex;
+    padding-top: 11%;
+}
+.Name_Side{
+    padding-left: 20%;
+    padding-top: 3%;
+
+}
+.IconSide{
+    padding-left: 10%;
+}

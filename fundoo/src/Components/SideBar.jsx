@@ -62,15 +62,7 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
-      {/* <List>
-        {[<Label/>,'label'].map((text, index) => (
-          <ListItem button key='/hello'>
-            <ListItemIcon>{index % 2 === 0 ?<EditIcon /> : <LabelIcon /> }</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-
-      </List> */}
+      
      <div>
      <Label/>
      </div>
@@ -95,7 +87,7 @@ export default function TemporaryDrawer() {
     <div>
       <Button onClick={toggleDrawer('left', true)}><DehazeIcon/></Button>
     
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+      <Drawer open={state.left} >
         {sideList('left')}
       </Drawer>
      
