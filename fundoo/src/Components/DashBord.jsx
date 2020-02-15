@@ -7,31 +7,45 @@ import Controller from '../../src/Controller/UserContoller'
 import "./note.css";
 import AppNav from './AppNav'
 import { ListItemSecondaryAction } from '@material-ui/core';
-
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SideNav from './sideNav';
-import SideBar from './SideBar'
+import SideBar from './SideBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
 
 
-export class DashBord extends Component {
+    
+
+
+ class DashBord extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dialogOpen: false,
             notes: [],
-            sideNavstate:false,
+             sideNavstate:false,
             Archive:false,
             trans:false,
             reminder:false,
             createNotesDisplay:true,
-
-
-           
             
         }
     }
+
+   
+ 
+    handleDrawerOpen = () => {
+   this.setState({setOpen:true})
+  };
+
+   handleDrawerClose = () => {
+    this.setState({setOpen:false})
+  };
+
     handleDialog = () => {
         this.setState({ dialogOpen: !this.state.dialogOpen })
     }
+
     componentDidMount() {
 
         Controller.getAllNotes().then((res) => {
@@ -96,7 +110,7 @@ export class DashBord extends Component {
         })
      
         let trans=this.state.notes.map((item)=>{
-            if(item.trash)
+            if(item.trash&&this.state.trans )
             {
                return <GetNotes data={item} handleDialog={this.handleDialog} />
             }
@@ -106,8 +120,8 @@ export class DashBord extends Component {
       
         return (
             <div>
-                
-               {appNav}
+                {appNav}
+                  
                 <div>
                 {createNote}
                 {trans}
@@ -130,9 +144,8 @@ export class DashBord extends Component {
                     {getNotes}
                 </div>
                 </div>
-               
-               
             </div>
+            
         )
     }
 }

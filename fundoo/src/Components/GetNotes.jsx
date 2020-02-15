@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Controller from '../Controller/UserContoller';
-import { Card, Tooltip, } from '@material-ui/core';
+import { Card, Tooltip, Divider, } from '@material-ui/core';
 import "./note.css";
 import InputBase from "@material-ui/core/InputBase";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
@@ -32,7 +32,7 @@ export class getNotes extends Component {
             pin_note:this.props.data.pin_note,
             colour:this.props.data.colour,
             trans :this.props.data.trans,
-
+            CollaboratoreDilogBox:false,
 
             open:false,
             dilogbox:true,
@@ -115,6 +115,10 @@ export class getNotes extends Component {
          })
      }
 
+     handleCollaboroter=()=>{
+         this.setState({CollaboratoreDilogBox:!this.state.CollaboratoreDilogBox})
+     }
+
       changeNoteColour=(event)=>{
           this.setState({colour:event.target.value})
           console.log(this.state.colour)
@@ -183,8 +187,25 @@ export class getNotes extends Component {
                             </div>
                             <div>
                             <Tooltip title="Collaboratore">
-                                <IconButton>
+                                <IconButton onClick={this.handleCollaboroter}>
                                     <PersonAddIcon style={{ fontSize: 15 }} />
+                                    <Dialog open={this.state.CollaboratoreDilogBox}>
+                                        <div>
+                                        <Card className="Collaboratore">
+                                            <div className="fistrow">
+                                            <p>Collaborators</p>
+                                            </div>
+                                            <Divider/>
+                                            <div>
+                                                <div>
+                                                    
+                                                </div>
+
+                                            </div>
+                                        </Card>
+                                        </div>
+
+                                    </Dialog>
                                 </IconButton>
                                 </Tooltip>
                             </div>
