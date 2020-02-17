@@ -28,6 +28,7 @@ import Drawer from '@material-ui/core/Drawer';
             trans:false,
             reminder:false,
             createNotesDisplay:true,
+            collaboratore:[]
             
         }
     }
@@ -53,6 +54,8 @@ import Drawer from '@material-ui/core/Drawer';
             this.setState({ notes: res.data.obj })
             console.log("Notes...", this.state.notes)
         })
+
+       
     }
     handleside=()=>{
         this.setState({sideNavstate:!this.state.sideNavstate})

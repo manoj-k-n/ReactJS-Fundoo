@@ -195,7 +195,81 @@
   /* Collaboratore */
 
   .Collaboratore{
-    width: 100%;
-    height: 20%;
+    
   }
+ .secondRow{
+   display: flex;
+   padding-top: 2%;
+  
+ }
+ .user{
+   padding-left: 2%;
+   padding-right: 5%;
+ }
+ .secondrowIcon{
  
+   
+ }
+
+ .getallcolab{
+   /* display: flex;
+   padding-left: 2%; */
+ }
+
+ .collab{
+   display: flex;
+   font-size: smaller;
+ }
+
+ .name{
+   padding:2%;
+   font-size: "10";
+ }
+
+ .name2{
+   padding:2%;
+   background-color: blue;
+ }
+ .get{
+   padding-top: 3%;
+   padding-left:0% ;
+ }
+
+ .tirdrow{
+   display: flex;
+ }
+
+ .donebutton{
+   padding-left: 40%;
+   padding-right: 0%;
+ }
+
+ .id{
+   padding-right: 3%;
+   padding-left:0%
+ }
+ .finalRow{
+   display:flex;
+   justify-content: flex-end;
+   background-color: darkgray;
+ }
+ .name5{
+   padding-left:0;
+  
+ }
+ .pading{
+   padding:20px 20px;
+   width: 100%;
+    height: 20%;
+    /* padding-top:0px;
+    padding-left:0px; */
+    padding-right:100px;
+    
+   
+ }
+
+ .name5{
+   padding-left: 2%;
+   padding-right: 0px;
+   width: 100%;
+ }

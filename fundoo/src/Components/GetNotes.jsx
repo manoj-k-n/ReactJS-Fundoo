@@ -18,6 +18,10 @@ import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import Avatar from '@material-ui/core/Avatar';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
+import DoneIcon from '@material-ui/icons/Done';
 
 export class getNotes extends Component {
     constructor(props) {
@@ -55,6 +59,9 @@ export class getNotes extends Component {
 
             defaultColour:"#FDFEFE",
             opencolourBox:false,
+            getAllCollaboratore:[],
+            Collaboratoretext:'',
+            dilogCollaboratore:false,
 
           
         }
@@ -116,7 +123,18 @@ export class getNotes extends Component {
      }
 
      handleCollaboroter=()=>{
-         this.setState({CollaboratoreDilogBox:!this.state.CollaboratoreDilogBox})
+         this.setState({CollaboratoreDilogBox:true})
+         Controller.getCollaboratore(this.state.id).then((value)=>{
+
+            this.setState({getAllCollaboratore:value.data.obj})
+            console.log("wkkkkkkkk kkkkk kkkk",this.state.getAllCollaboratore)
+             console.log("welocme collaboratore ",value.data.obj)
+         })
+     }
+
+     addColoboratore=(event)=>{
+         this.setState({Collaboratoretext:event.target.value})
+
      }
 
       changeNoteColour=(event)=>{
@@ -145,6 +163,11 @@ export class getNotes extends Component {
 
       }
 
+      closeColoab=()=>{
+        this.setState({CollaboratoreDilogBox:false})
+        console.log("sgssgsgsg sgsgsgsg ",this.state.CollaboratoreDilogBox)
+      }
+
     render() {
         const colour1=this.state.manycolour.map((colour)=>{
             return(
@@ -155,6 +178,20 @@ export class getNotes extends Component {
             </div>
             )
             
+        })
+
+        const collaboratore=this.state.getAllCollaboratore.map((all)=>{
+            return(
+                <div className="collab">
+                    <div className="getallcolab">
+                    {/* <Avatar alt="Remy Sharp" style={{fontSize:1}}/> */}
+                   <HowToRegIcon/>
+                    </div>
+                    <div className="name">
+                       <h4 style={{fontSize:15}}>{all.email}</h4> 
+                    </div>
+                </div>
+            )
         })
 
         return ! this.state.open ? (
@@ -189,16 +226,58 @@ export class getNotes extends Component {
                             <Tooltip title="Collaboratore">
                                 <IconButton onClick={this.handleCollaboroter}>
                                     <PersonAddIcon style={{ fontSize: 15 }} />
-                                    <Dialog open={this.state.CollaboratoreDilogBox}>
+                                    <Dialog open={this.state.CollaboratoreDilogBox} >
                                         <div>
+                                        
                                         <Card className="Collaboratore">
+                                        <div className="pading">
                                             <div className="fistrow">
-                                            <p>Collaborators</p>
+                                            <h4>Collaborators</h4>
                                             </div>
                                             <Divider/>
-                                            <div>
+                                           
+                                            <div className="secondRow">
+                                            <div className="secondrowIcon">
+                                            <IconButton style={{background:"blue" ,fontSize:9}}><h>M</h></IconButton>
+                                            </div>
+                                            <div className="user">
+                                               <h4>manojpraju08@gmail.com</h4>
+                                               
+
+                                            </div>
+                                            </div>
+                                            <div className="get">
+                                                {collaboratore}
+                                            </div>
+                                            <div className="tirdrow">
+                                                <div className="id">
+                                                    <PermIdentityIcon/>
+                                                </div>
+                                            <div className="name5">
+                                                <InputBase value={this.state.Collaboratoretext} onChange={this.addColoboratore}
+                                                placeholder="Person or email to share with         " style={{width:"100%"}}
+                                                ></InputBase>
+                                                {console.log(this.state.Collaboratoretext)}
+                                            </div>
+                                            <div className="donebutton">
+                                               
+                                                <IconButton >
+                                            <DoneIcon style={{fontSize:10}} onChange={this.closeColoab}  />
+                                            </IconButton>
+                                            
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <div className="finalRow">
                                                 <div>
-                                                    
+    
+                                                   <Button onClick={this.closeColoab}> close</Button>
+                                                       
+                                                </div>
+                                                <div>
+                                                   
+                                                   <Button>Save</Button>
+                                                      
                                                 </div>
 
                                             </div>

@@ -81,6 +81,12 @@ var contoller={
     {
         const token=localStorage.getItem("logintoken")
         return axios.put("http://localhost:8080/trash/"+id+"/"+token)
+    },
+
+    getCollaboratore(idn,email)
+    {
+        const token=localStorage.getItem("logintoken")
+        return axios.get("http://localhost:8080/getAllCollaborate/"+idn+"/"+token)
     }
     
 }
