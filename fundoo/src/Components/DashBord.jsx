@@ -12,6 +12,8 @@ import SideNav from './sideNav';
 import SideBar from './SideBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+import DemoColour from './DemoColour';
+import Demo2 from './Demo2';
 
 
     
@@ -79,6 +81,7 @@ import Drawer from '@material-ui/core/Drawer';
                 console.log("hello...........///////",item.pin_note,item.Archive,item.trans)
                 console.log(item.Archive)
                 console.log(item.trans)
+                console.log(item.pin_note)
                 return (
                     <GetNotes data={item} handleDialog={this.handleDialog} />
                     )
@@ -124,8 +127,9 @@ import Drawer from '@material-ui/core/Drawer';
         return (
             <div>
                 {appNav}
-                  
+              
                 <div>
+                   
                 {createNote}
                 {trans}
                 {Archive}

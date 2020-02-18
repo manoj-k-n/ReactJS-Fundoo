@@ -45,6 +45,13 @@ var contoller={
         return axios.post("http://localhost:8080/notes/"+tokenkey,notedetails)
     },
 
+    udateNote(notedetails,idn)
+    {
+        const tokenkey=localStorage.getItem('logintoken')
+            console.log("working.alfj.fuhgaf.///ilialif//.ihfiah")
+        return axios.put("http://localhost:8080/editeText/"+idn+"/"+tokenkey,notedetails)
+    },
+
     getAllNotes()
     {
         
@@ -83,10 +90,17 @@ var contoller={
         return axios.put("http://localhost:8080/trash/"+id+"/"+token)
     },
 
-    getCollaboratore(idn,email)
+    getCollaboratore(idn)
     {
         const token=localStorage.getItem("logintoken")
         return axios.get("http://localhost:8080/getAllCollaborate/"+idn+"/"+token)
+    },
+     
+    addCollaboratore(idn,email)
+    {
+        console.log("commin././././",email)
+        const token=localStorage.getItem("logintoken")
+        return axios.post("http://localhost:8080/collaboratore/"+idn+"/"+token,email)
     }
     
 }

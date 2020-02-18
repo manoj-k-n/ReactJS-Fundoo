@@ -19,6 +19,8 @@ import createnote from './Components/createnote'
 import Icon from './Components/Icon'
 import AppBar from './Components/AppNav';
 import sideNav from './Components/sideNav';
+import DemoColour from './Components/DemoColour';
+import Demo2 from './Components/Demo2';
  
 
 
@@ -44,6 +46,8 @@ function App() {
        <Route path="/icon" component={Icon}/>
        <Route path="/app" component={AppBar}/>
        <Route path="/side" component={sideNav}/>
+       <Route path="/demo" component={DemoColour}/>
+       <Route path="/demo2" component={Demo2}/>
       </Router>
   
   );

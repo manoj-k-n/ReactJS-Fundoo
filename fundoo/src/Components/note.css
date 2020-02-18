@@ -273,3 +273,11 @@
    padding-right: 0px;
    width: 100%;
  }
+
+ .demo{
+   margin-top: 6%;
+ }
+ .colourflex{
+
+  display: flex;
+ }

@@ -31,417 +31,525 @@ export class getNotes extends Component {
             notes: [],
             title: this.props.data.title,
             take_a_note: this.props.data.take_a_note,
-            id:this.props.data.id,
-            archive:this.props.data.archive,
-            pin_note:this.props.data.pin_note,
-            colour:this.props.data.colour,
-            trans :this.props.data.trans,
-            CollaboratoreDilogBox:false,
+            id: this.props.data.id,
+            archive: this.props.data.archive,
+            pin_note: this.props.data.pin_note,
+            colour: this.props.data.colour,
+            trans: this.props.data.trans,
+            CollaboratoreDilogBox: false,
+            colorAnchor: null,
 
-            open:false,
-            dilogbox:true,
-              menu:false,
+            open: false,
+            dilogbox: true,
+            menu: false,
 
-              manycolour:
-              [{ name: "default", colorCode: "#FDFEFE" },
-              { name: "Red", colorCode: "#ef9a9a" },
-              { name: "Cyan", colorCode: "#80deea" },
-              { name: "Blue", colorCode: "#2196f3" },
-              { name: "Indigo", colorCode: "#9fa8da" },
-              { name: "LightBlue", colorCode: "#90caf9" },
-              { name: "Purple", colorCode: "#b39ddb" },
-              { name: "Yellow", colorCode: "#c5e1a5" },
-              { name: "Lime", colorCode: "#e6ee9c" },
-              { name: "Pink", colorCode: "#f48fb1" },
-              { name: "gray", colorCode: "#eeeeee" },
-              { name: "Brown", colorCode: "#bcaaa4" },
-            ],
+            manycolour:
+               [{ name: "default", colorCode: "#FDFEFE" },
+                { name: "Red", colorCode: "#ef9a9a" },
+                { name: "Cyan", colorCode: "#80deea" },
+                { name: "Blue", colorCode: "#2196f3" },
+                { name: "Indigo", colorCode: "#9fa8da" },
+                { name: "LightBlue", colorCode: "#90caf9" },
+                { name: "Purple", colorCode: "#b39ddb" },
+                { name: "Yellow", colorCode: "#c5e1a5" },
+                { name: "Lime", colorCode: "#e6ee9c" },
+                { name: "Pink", colorCode: "#f48fb1" },
+                { name: "gray", colorCode: "#eeeeee" },
+                { name: "Brown", colorCode: "#bcaaa4" },
+                ],
 
-            defaultColour:"#FDFEFE",
-            opencolourBox:false,
-            getAllCollaboratore:[],
-            Collaboratoretext:'',
-            dilogCollaboratore:false,
+            defaultColour: "#FDFEFE",
+            colorOpen: false,
+            opencolourBox: false,
+            getAllCollaboratore: [],
+            Collaboratoretext: '',
 
-          
         }
 
     }
-    openDilog=()=>{
-        this.setState({open:true})
+    openDilog = () => {
+        this.setState({ open: true })
     }
-    changevalue=()=>{
-       console.log("",this.props.data.id)
+    changevalue = () => {
+        console.log("", this.props.data.id)
     }
 
-    handleClose=()=>{
-        this.setState({dilogbox:!this.state.dilogbox})
+    handleClose = () => {
+
+        let notedetails = {
+            title: this.state.title,
+            take_a_note: this.state.take_a_note
+
+        }
+        Controller.udateNote(notedetails, (this.state.id)).then((value) => {
+            console.log("hello  ...", value)
+        })
+        this.setState({ dilogbox: !this.state.dilogbox })
     }
-    changeTitle=(event)=>{
-        this.setState({title:event.target.value})
+    changeTitle = (event) => {
+        this.setState({ title: event.target.value })
     }
-    changeTake=(event)=>{
-        this.setState({take_a_note:event.target.value})
+    changeTake = (event) => {
+        this.setState({ take_a_note: event.target.value })
     }
     // changedilogbox=()=>{
     //     this.setState({})
     // }
-    menuOpen=()=>{
-        this.setState({menu:true})
+    menuOpen = () => {
+        this.setState({ menu: true })
     }
-    MenuClose=()=>{
-        this.setState({menu:false})
-      }
-      changeColour=()=>{
-        this.setState({opencolourBox:true})
+    MenuClose = () => {
+        this.setState({ menu: false })
     }
-    closeColourBox=()=>{
-        this.setState({opencolourBox:false})
+    changeColour = (event) => {
+        this.setState({
+            colorOpen:true,
+           
+            colorAnchor: event.currentTarget
+        })
+    }
+    closeColourBox = () => {
+        this.setState({
+             colorOpen:false, 
+        colorAnchor:null })
     }
 
-    closeMenuList=()=>{
-        this.setState({menu:false})
+    closeMenuList = () => {
+        this.setState({ menu: false })
     }
-    changePin=()=>{
-        this.setState({pin_note:!this.state.pin_note})
-        Controller.changePin(this.state.id).then((value)=>{
+    changePin = () => {
+        this.setState({ pin_note: !this.state.pin_note })
+        Controller.changePin(this.state.id).then((value) => {
             console.log(value)
         })
-    } 
-     changeArchive=()=>{
-         this.setState({archive:!this.state.archive})
-         Controller.changeArchive(this.state.id).then((value)=>{
-             console.log(value)
-         })
-     }
+    }
+    changeArchive = () => {
+        this.setState({ archive: !this.state.archive })
+        Controller.changeArchive(this.state.id).then((value) => {
+            console.log(value)
+        })
+    }
 
-     changeTrans=()=>{
-         this.setState({trans:!this.state.trans},{menu:false})
-         Controller.changeTrans(this.state.id).then((value)=>{
-             console.log(value)
-         })
-     }
+    changeTrans = () => {
+        this.setState({ trans: !this.state.trans }, { menu: false })
+        Controller.changeTrans(this.state.id).then((value) => {
+            console.log(value)
+        })
+    }
 
-     handleCollaboroter=()=>{
-         this.setState({CollaboratoreDilogBox:true})
-         Controller.getCollaboratore(this.state.id).then((value)=>{
+    handleCollaboroter = () => {
+        this.setState({ CollaboratoreDilogBox: true })
+        Controller.getCollaboratore(this.state.id).then((value) => {
 
-            this.setState({getAllCollaboratore:value.data.obj})
-            console.log("wkkkkkkkk kkkkk kkkk",this.state.getAllCollaboratore)
-             console.log("welocme collaboratore ",value.data.obj)
-         })
-     }
+            this.setState({ getAllCollaboratore: value.data.obj })
+            console.log("wkkkkkkkk kkkkk kkkk", this.state.getAllCollaboratore)
+            console.log("welocme collaboratore ", value.data.obj)
+        })
+    }
 
-     addColoboratore=(event)=>{
-         this.setState({Collaboratoretext:event.target.value})
 
-     }
+    clsoetheColab = () => {
+        let collaboratore = {
+            email: this.state.Collaboratoretext
+        }
+        if (this.state.Collaboratoretext != '' && /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Collaboratoretext)) {
+            Controller.addCollaboratore((this.state.id), collaboratore).then((value) => {
+                console.log(value)
+                if (value.data.messagecode === 200) {
+                    this.setState({ CollaboratoreDilogBox: false })
+                    console.log("okokokokok")
+                }
+                else {
+                    console.log("not working..,,,,,")
+                }
+            })
+        }
+        else {
+            this.setState({ CollaboratoreDilogBox: false })
+        }
 
-      changeNoteColour=(event)=>{
-          this.setState({colour:event.target.value})
-          console.log(this.state.colour)
-          console.log("Invalid..........")
-         var edite={
-            colour:this.state.colour,
-            title:this.state.title,
-            take_a_note:this.state.take_a_note,
-            archive:this.state.archive,
-            pin_note:this.state.pin_note,
-            transh:this.state.trans,
-         }
-        
-         console.log("colourtype",edite)
-         Controller.editeNotes(edite,this.state.id).then((value)=>{
-             if(value.data.messagecode===200)
-             {
-                 console.log(".................")
-             }
-             else{
-                 console.log("//////////////")
-             }
-         })
+    }
 
-      }
+    addColoboratore = (event) => {
+        this.setState({ Collaboratoretext: event.target.value })
 
-      closeColoab=()=>{
-        this.setState({CollaboratoreDilogBox:false})
-        console.log("sgssgsgsg sgsgsgsg ",this.state.CollaboratoreDilogBox)
-      }
+    }
 
-    render() {
-        const colour1=this.state.manycolour.map((colour)=>{
-            return(
-                <div>
-                <Tooltip title={colour.name}>
-            <IconButton style={{background:colour.colorCode}} value={colour.colorCode} onClick={this.changeNoteColour}/>
-            </Tooltip>
-            </div>
-            )
-            
+    changeNoteColour = (event) => {
+        this.setState({ colour: event.target.value })
+        console.log(this.state.colour)
+        console.log("Invalid..........")
+        var edite = {
+            colour: this.state.colour,
+            title: this.state.title,
+            take_a_note: this.state.take_a_note,
+            archive: this.state.archive,
+            pin_note: this.state.pin_note,
+            transh: this.state.trans,
+        }
+
+        console.log("colourtype", edite)
+        Controller.editeNotes(edite, this.state.id).then((value) => {
+            if (value.data.messagecode === 200) {
+                console.log(".................")
+            }
+            else {
+                console.log("//////////////")
+            }
         })
 
-        const collaboratore=this.state.getAllCollaboratore.map((all)=>{
-            return(
+    }
+
+
+    render() {
+        const colour1 = this.state.manycolour.map((colour) => {
+            return (
+                <div>
+                    <Tooltip title={colour.name}>
+                        <IconButton style={{ background: colour.colorCode }} value={colour.colorCode} onClick={this.changeNoteColour} />
+                    </Tooltip>
+                </div>
+            )
+
+        })
+
+        const collaboratore = this.state.getAllCollaboratore.map((all) => {
+            return (
                 <div className="collab">
                     <div className="getallcolab">
-                    {/* <Avatar alt="Remy Sharp" style={{fontSize:1}}/> */}
-                   <HowToRegIcon/>
+                        {/* <Avatar alt="Remy Sharp" style={{fontSize:1}}/> */}
+                        <HowToRegIcon />
                     </div>
                     <div className="name">
-                       <h4 style={{fontSize:15}}>{all.email}</h4> 
+                        <h4 style={{ fontSize: 15 }}>{all.email}</h4>
                     </div>
                 </div>
             )
         })
 
-        return ! this.state.open ? (
+        return !this.state.open ? (
             <div className="getNotesContainer">
                 {/* <Dialog open={this.state.open} > */}
-                <Card className="main_card12"  style={{background:this.state.colour}} >
+                <Card className="main_card12" style={{ background: this.state.colour }} >
                     <div>
                         <div className="fist_row_card">
                             <div className="title_space">
-                                <InputBase value={this.state.title}  onClick={this.openDilog} />
+                                <InputBase value={this.state.title} onClick={this.openDilog} />
                             </div>
                             <div className="icon_1st_row">
                                 <Tooltip title="Pin">
-                                <IconButton onClick={this.changePin}>
-                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 15 }} />
-                                </IconButton>
+                                    <IconButton onClick={this.changePin}>
+                                        <NotificationsNoneTwoToneIcon style={{ fontSize: 15 }} />
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                         </div>
                         <div className="second_row_card ">
-                            <InputBase value={this.state.take_a_note}  onClick={this.openDilog} />
+                            <InputBase value={this.state.take_a_note} onClick={this.openDilog} />
                         </div>
                         <div className="finalrow_card">
                             <div>
                                 <Tooltip title="Reminder Me">
-                                <IconButton >
-                                    <NotificationImportantIcon style={{ fontSize: 15 }} />
-                                </IconButton>
+                                    <IconButton >
+                                        <NotificationImportantIcon style={{ fontSize: 15 }} />
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                             <div>
-                            <Tooltip title="Collaboratore">
-                                <IconButton onClick={this.handleCollaboroter}>
-                                    <PersonAddIcon style={{ fontSize: 15 }} />
-                                    <Dialog open={this.state.CollaboratoreDilogBox} >
-                                        <div>
-                                        
-                                        <Card className="Collaboratore">
-                                        <div className="pading">
-                                            <div className="fistrow">
-                                            <h4>Collaborators</h4>
-                                            </div>
-                                            <Divider/>
-                                           
-                                            <div className="secondRow">
-                                            <div className="secondrowIcon">
-                                            <IconButton style={{background:"blue" ,fontSize:9}}><h>M</h></IconButton>
-                                            </div>
-                                            <div className="user">
-                                               <h4>manojpraju08@gmail.com</h4>
-                                               
+                                <Tooltip title="Collaboratore">
+                                    <IconButton onClick={this.handleCollaboroter}>
+                                        <PersonAddIcon style={{ fontSize: 15 }} />
 
-                                            </div>
-                                            </div>
-                                            <div className="get">
-                                                {collaboratore}
-                                            </div>
-                                            <div className="tirdrow">
-                                                <div className="id">
-                                                    <PermIdentityIcon/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Dialog open={this.state.CollaboratoreDilogBox}
+                                    onClose={this.clsoetheColab} >
+                                    <div>
+
+                                        <Card className="Collaboratore">
+                                            <div className="pading">
+                                                <div className="fistrow">
+                                                    <h4>Collaborators</h4>
                                                 </div>
-                                            <div className="name5">
-                                                <InputBase value={this.state.Collaboratoretext} onChange={this.addColoboratore}
-                                                placeholder="Person or email to share with         " style={{width:"100%"}}
-                                                ></InputBase>
-                                                {console.log(this.state.Collaboratoretext)}
-                                            </div>
-                                            <div className="donebutton">
-                                               
-                                                <IconButton >
-                                            <DoneIcon style={{fontSize:10}} onChange={this.closeColoab}  />
-                                            </IconButton>
-                                            
-                                            </div>
-                                            </div>
+                                                <Divider />
+
+                                                <div className="secondRow">
+                                                    <div className="secondrowIcon">
+                                                        <IconButton style={{ background: "blue", fontSize: 9 }}><h>M</h></IconButton>
+                                                    </div>
+                                                    <div className="user">
+                                                        <h4>manojpraju08@gmail.com</h4>
+
+
+                                                    </div>
+                                                </div>
+                                                <div className="get">
+                                                    {collaboratore}
+                                                </div>
+                                                <div className="tirdrow">
+                                                    <div className="id">
+                                                        <PermIdentityIcon />
+                                                    </div>
+                                                    <div className="name5">
+                                                        <InputBase value={this.state.Collaboratoretext} onChange={this.addColoboratore}
+                                                            placeholder="Person or email to share with         " style={{ width: "100%" }}
+                                                        ></InputBase>
+                                                        {console.log(this.state.Collaboratoretext)}
+                                                    </div>
+                                                    <div className="donebutton">
+
+                                                        <IconButton onClick={this.clsoetheColab}>
+                                                            <DoneIcon style={{ fontSize: 10 }} />
+                                                        </IconButton>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div className="finalRow">
                                                 <div>
-    
-                                                   <Button onClick={this.closeColoab}> close</Button>
-                                                       
+
+                                                    <Button onClick={this.clsoetheColab}> close</Button>
+
                                                 </div>
                                                 <div>
-                                                   
-                                                   <Button>Save</Button>
-                                                      
+
+                                                    <Button onClick={this.clsoetheColab}>Save</Button>
+
                                                 </div>
 
                                             </div>
                                         </Card>
-                                        </div>
-
-                                    </Dialog>
-                                </IconButton>
-                                </Tooltip>
-                            </div>
-                            <div>
-                            <Tooltip title="Colour Change">
-                                <IconButton>
-                                <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
-                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox} className="ColourBox">
-                                    <div className="colour_row1">
-                                    {colour1}
                                     </div>
 
-                                </Menu>
-                                </IconButton>
+                                </Dialog>
+                            </div>
+                            <div>
+                                <Tooltip title="Colour Change">
+                                    <IconButton>
+                                        <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                        <Menu id="simple-menu"
+                                        open={this.state.colorOpen}
+                                            anchorEl={this.state.colorAnchor}
+                                            onClose={this.closeColourBox}
+                                           >
+                                            <div className="colourflex">
+                                                {colour1}
+                                            </div>
+                                        </Menu>
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                             <div>
-                            <Tooltip title="Add image">
-                                <IconButton>
-                                    <ImageIcon style={{ fontSize: 15 }} />
-                                </IconButton>
+                                <Tooltip title="Add image">
+                                    <IconButton>
+                                        <ImageIcon style={{ fontSize: 15 }} />
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                             <div>
                                 <Tooltip title="Archive">
-                                <IconButton  onClick={this.changeArchive}>
-                                    <ArchiveTwoToneIcon style={{ fontSize: 15 }} />
-                                </IconButton>
+                                    <IconButton onClick={this.changeArchive}>
+                                        <ArchiveTwoToneIcon style={{ fontSize: 15 }} />
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                             <div>
                                 <Tooltip title="More">
-                                <IconButton>
-                                <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
-                                <div >
-                                <Menu open={this.state.menu} onClose={this.closeMenuList} className="Menu_">
-                                    <div className="MenuItem"> 
-                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
-                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
-                                    </div>
-                                </Menu>
-                                </div>
-                                </IconButton>
+                                    <IconButton>
+                                        <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
+                                        <div >
+                                            <Menu open={this.state.menu} onClose={this.closeMenuList} className="Menu_">
+                                                <div className="MenuItem">
+                                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                                </div>
+                                            </Menu>
+                                        </div>
+                                    </IconButton>
                                 </Tooltip>
                             </div>
                         </div>
                     </div>
-                </Card>   
+                </Card>
                 {/* </Dialog>         */}
-                 </div>
-        ):(
-           
-            <div className="dilog_card">
-                
-                <Dialog open={this.state.dilogbox}  onClose={this.handleClose}>
-               <div  >
-            
-                    <Card className="dilogBox_card" style={{background:this.state.colour}}>
-                        <div className="DilogCard">
-                           <div className="dilogBox_fistrow" >
-                           <div className="title_text">
-                           <InputBase value={this.state.title}  onChange={this.changeTitle} placeholder="Title"/>
-                           </div>
-                           <div className="pinIconDilogBox">
-                           <IconButton  onClick={this.changePin}>
-                                    <NotificationsNoneTwoToneIcon style={{ fontSize: 20 }} />
-                                </IconButton>
-                           </div>
-                           </div>
-                           <div>
-                           <InputBase value={this.state.take_a_note} onChange={this.changeTake} placeholder="Title" />
-                           </div>
-                           <div className="fullRow">
-                           <div>
-                              <div className="dilogBox_third_row">
-                              <div>
-                                <IconButton >
-                                    <NotificationImportantIcon style={{ fontSize: 18 }} />
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton >
-                                <PersonAddIcon style={{ fontSize: 18 }} />
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton >
-                                <ColorLensIcon style={{ fontSize: 18 }} onClick={this.changeColour}/>
-                                <Menu open={this.state.opencolourBox}  onClose={this.closeColourBox} className="ColourBox">
-                                    <div className="colour_row">
-                                    {colour1}
+            </div>
+        ) : (
+
+                <div className="dilog_card">
+
+                    <Dialog open={this.state.dilogbox} onClose={this.handleClose}>
+                        <div  >
+
+                            <Card className="dilogBox_card" style={{ background: this.state.colour }}>
+                                <div className="DilogCard">
+                                    <div className="dilogBox_fistrow" >
+                                        <div className="title_text">
+                                            <InputBase value={this.state.title} onChange={this.changeTitle} placeholder="Title" />
+                                        </div>
+                                        <div className="pinIconDilogBox">
+                                            <IconButton onClick={this.changePin}>
+                                                <NotificationsNoneTwoToneIcon style={{ fontSize: 20 }} />
+                                            </IconButton>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <InputBase value={this.state.take_a_note} onChange={this.changeTake} placeholder="Title" />
+                                    </div>
+                                    <div className="fullRow">
+                                        <div>
+                                            <div className="dilogBox_third_row">
+                                                <div>
+                                                    <IconButton >
+                                                        <NotificationImportantIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                </div>
+                                                <div>
+                                                    <IconButton title="Collaboratore" onClick={this.handleCollaboroter}>
+                                                        <PersonAddIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                    <Dialog open={this.state.CollaboratoreDilogBox}
+                                                        onClose={this.clsoetheColab} >
+                                                        <div>
+
+                                                            <Card className="Collaboratore">
+                                                                <div className="pading">
+                                                                    <div className="fistrow">
+                                                                        <h4>Collaborators</h4>
+                                                                    </div>
+                                                                    <Divider />
+
+                                                                    <div className="secondRow">
+                                                                        <div className="secondrowIcon">
+                                                                            <IconButton style={{ background: "blue", fontSize: 9 }}><h>M</h></IconButton>
+                                                                        </div>
+                                                                        <div className="user">
+                                                                            <h4>manojpraju08@gmail.com</h4>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="get">
+                                                                        {collaboratore}
+                                                                    </div>
+                                                                    <div className="tirdrow">
+                                                                        <div className="id">
+                                                                            <PermIdentityIcon />
+                                                                        </div>
+                                                                        <div className="name5">
+                                                                            <InputBase value={this.state.Collaboratoretext} onChange={this.addColoboratore}
+                                                                                placeholder="Person or email to share with         " style={{ width: "100%" }}
+                                                                            ></InputBase>
+                                                                            {console.log(this.state.Collaboratoretext)}
+                                                                        </div>
+                                                                        <div className="donebutton">
+
+                                                                            <IconButton onClick={this.clsoetheColab}>
+                                                                                <DoneIcon style={{ fontSize: 10 }} />
+                                                                            </IconButton>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="finalRow">
+                                                                    <div>
+
+                                                                        <Button onClick={this.clsoetheColab}> close</Button>
+
+                                                                    </div>
+                                                                    <div>
+
+                                                                        <Button onClick={this.clsoetheColab}>Save</Button>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </Card>
+                                                        </div>
+
+                                                    </Dialog>
+                                                </div>
+                                                <div>
+                                                    <IconButton onClick={(event) => {
+                                                        this.setState({
+                                                            colorOpen: true,
+                                                            colorAnchor: event.currentTarget
+                                                        })
+                                                    }}>
+                                                        <ColorLensIcon style={{ fontSize: 18 }} />
+                                                        <Menu open={this.state.colorOpen}
+                                                            anchorEl={this.state.colorAnchor}
+                        
+                                                         onClose={this.closeColourBox} >
+                                                     <div className="colourflex">
+                                                                    {colour1}
+                                                                     </div>
+
+                                                               </Menu>
+
+                                                    </IconButton>
+                                                </div>
+                                                <div>
+                                                    <IconButton >
+                                                        <ImageIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                </div>
+                                                <div>
+                                                    <IconButton onClick={this.changeArchive}>
+                                                        <ArchiveTwoToneIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                </div>
+                                                <div>
+                                                    <IconButton >
+                                                        <MoreVertIcon style={{ fontSize: 18 }} onClick={this.menuOpen} />
+                                                        <div >
+                                                            <Menu open={this.state.menu} onClose={this.closeManuList} className="Menu_">
+                                                                <div className="MenuItem">
+                                                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
+                                                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
+                                                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
+                                                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
+                                                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
+                                                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                                                </div>
+                                                            </Menu>
+                                                        </div>
+                                                    </IconButton>
+                                                </div>
+
+                                                <div>
+                                                    <IconButton>
+                                                        <RotateLeftIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                </div>
+                                                <div>
+                                                    <IconButton>
+                                                        <RotateRightIcon style={{ fontSize: 18 }} />
+                                                    </IconButton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="closeIcon1111">
+
+                                            <Button onClick={this.handleClose} >
+                                                <h5 style={{ fontSize: 18, }} className="close">Close</h5>
+                                            </Button>
+
+                                        </div>
+
                                     </div>
 
-                                </Menu>
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton >
-                                <ImageIcon style={{ fontSize: 18 }} />
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton  onClick={this.changeArchive}>
-                                <ArchiveTwoToneIcon style={{ fontSize: 18 }} />
-                                </IconButton>
-                            </div>
-                            <div>
-                                <IconButton >
-                                <MoreVertIcon style={{ fontSize: 18 }} onClick={this.menuOpen} />
-                                <div >
-                                <Menu open={this.state.menu} onClose={this.closeManuList} className="Menu_">
-                                    <div className="MenuItem"> 
-                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
-                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
-                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
-                                    </div>
-                                </Menu>
                                 </div>
-                                </IconButton>
-                            </div>
-                          
-                            <div>
-                  <IconButton>
-                     <RotateLeftIcon style={{ fontSize:18 }}/>
-                     </IconButton>
-                  </div>
-                  <div>
-                  <IconButton>
-                     <RotateRightIcon style={{ fontSize:18 }}/>
-                     </IconButton>
-                  </div>
-                  </div>
-                  </div>
-                  <div className="closeIcon1111">
-                  
-                      <Button onClick={this.handleClose} >
-                             <h5 style={{ fontSize: 18 ,}} className="close">Close</h5>
-                             </Button>
-                   
-                  </div>
-                             
-                           </div>
-                        
+                            </Card>
+
                         </div>
-              </Card>
-                     
-              </div>
-                </Dialog>
-            </div>
-        )
+                    </Dialog>
+                   
+                </div>
+            )
     }
 }
 
