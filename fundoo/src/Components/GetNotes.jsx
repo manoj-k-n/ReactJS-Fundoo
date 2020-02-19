@@ -63,6 +63,7 @@ export class getNotes extends Component {
             opencolourBox: false,
             getAllCollaboratore: [],
             Collaboratoretext: '',
+            deleteAncore:''
 
         }
 
@@ -95,8 +96,10 @@ export class getNotes extends Component {
     // changedilogbox=()=>{
     //     this.setState({})
     // }
-    menuOpen = () => {
-        this.setState({ menu: true })
+    menuOpen = (event) => {
+        this.setState({ menu: true ,
+        deleteAncore:event.currentTarget
+        })
     }
     MenuClose = () => {
         this.setState({ menu: false })
@@ -115,7 +118,7 @@ export class getNotes extends Component {
     }
 
     closeMenuList = () => {
-        this.setState({ menu: false })
+        this.setState({ menu: false },{deleteAncore:null})
     }
     changePin = () => {
         this.setState({ pin_note: !this.state.pin_note })
@@ -131,7 +134,7 @@ export class getNotes extends Component {
     }
 
     changeTrans = () => {
-        this.setState({ trans: !this.state.trans }, { menu: false })
+        this.setState({ trans: !this.state.trans }, { menu: false },{deleteAncore:null})
         Controller.changeTrans(this.state.id).then((value) => {
             console.log(value)
         })
@@ -358,14 +361,14 @@ export class getNotes extends Component {
                                     <IconButton>
                                         <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
                                         <div >
-                                            <Menu open={this.state.menu} onClose={this.closeMenuList} className="Menu_">
-                                                <div className="MenuItem">
-                                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
+                                            <Menu open={this.state.menu} onClose={this.closeMenuList}  anchorEl={this.state.deleteAncore} >
+                                                <div >
+                                                    <MenuItem onClick={this.changeTrans} style={{fontSize:12}}>Delet note</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Change label</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Add drawing</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Make a copy</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Show tick boxes</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}} >Copy to Google Docs</MenuItem>
                                                 </div>
                                             </Menu>
                                         </div>
@@ -473,24 +476,20 @@ export class getNotes extends Component {
                                                     </Dialog>
                                                 </div>
                                                 <div>
-                                                    <IconButton onClick={(event) => {
-                                                        this.setState({
-                                                            colorOpen: true,
-                                                            colorAnchor: event.currentTarget
-                                                        })
-                                                    }}>
-                                                        <ColorLensIcon style={{ fontSize: 18 }} />
-                                                        <Menu open={this.state.colorOpen}
-                                                            anchorEl={this.state.colorAnchor}
-                        
-                                                         onClose={this.closeColourBox} >
-                                                     <div className="colourflex">
-                                                                    {colour1}
-                                                                     </div>
-
-                                                               </Menu>
-
-                                                    </IconButton>
+                                                <Tooltip title="Colour Change">
+                                    <IconButton>
+                                        <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                        <Menu id="simple-menu"
+                                        open={this.state.colorOpen}
+                                            anchorEl={this.state.colorAnchor}
+                                            onClose={this.closeColourBox}
+                                           >
+                                            <div className="colourflex">
+                                                {colour1}
+                                            </div>
+                                        </Menu>
+                                    </IconButton>
+                                </Tooltip>s
                                                 </div>
                                                 <div>
                                                     <IconButton >
@@ -503,21 +502,23 @@ export class getNotes extends Component {
                                                     </IconButton>
                                                 </div>
                                                 <div>
-                                                    <IconButton >
-                                                        <MoreVertIcon style={{ fontSize: 18 }} onClick={this.menuOpen} />
-                                                        <div >
-                                                            <Menu open={this.state.menu} onClose={this.closeManuList} className="Menu_">
-                                                                <div className="MenuItem">
-                                                                    <MenuItem onClick={this.changeTrans}>Delet note</MenuItem>
-                                                                    <MenuItem onClick={this.MenuClose}>Change label</MenuItem>
-                                                                    <MenuItem onClick={this.MenuClose}>Add drawing</MenuItem>
-                                                                    <MenuItem onClick={this.MenuClose}>Make a copy</MenuItem>
-                                                                    <MenuItem onClick={this.MenuClose}>Show tick boxes</MenuItem>
-                                                                    <MenuItem onClick={this.MenuClose} >Copy to Google Docs</MenuItem>
-                                                                </div>
-                                                            </Menu>
-                                                        </div>
-                                                    </IconButton>
+                                                <Tooltip title="More">
+                                    <IconButton>
+                                        <MoreVertIcon style={{ fontSize: 15 }} onClick={this.menuOpen} />
+                                        <div >
+                                            <Menu open={this.state.menu} onClose={this.closeMenuList}  anchorEl={this.state.deleteAncore} >
+                                                <div >
+                                                    <MenuItem onClick={this.changeTrans} style={{fontSize:12}}>Delet note</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Change label</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Add drawing</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Make a copy</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Show tick boxes</MenuItem>
+                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}} >Copy to Google Docs</MenuItem>
+                                                </div>
+                                            </Menu>
+                                        </div>
+                                    </IconButton>
+                                </Tooltip>
                                                 </div>
 
                                                 <div>

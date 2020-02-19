@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBCol, MDBIcon ,MDBInput} from "mdbreact";
 import { Nav,DropdownButton,Dropdown } from 'react-bootstrap';
-import SideBar from './SideBar';
+
 import SettingsIcon from '@material-ui/icons/Settings';
 import IconButton from '@material-ui/core/IconButton';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -15,7 +15,7 @@ export class NavBar extends Component {
         return (
           <nav class="navbar navbar-expand-lg navbar-light bg-light">  
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div><SideBar/></div>
+           
          <img id="brand-image" alt="Website-logo" src="https://www.google.com/images/icons/product/keep-512.png"/>        
            <a className="navbar-brand" href="#">Keep</a>
           

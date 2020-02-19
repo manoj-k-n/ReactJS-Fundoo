@@ -8,12 +8,13 @@ import "./note.css";
 import AppNav from './AppNav'
 import { ListItemSecondaryAction } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SideNav from './sideNav';
-import SideBar from './SideBar';
+
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import DemoColour from './DemoColour';
-import Demo2 from './Demo2';
+import SideNav from './SideNav';
+
 
 
     
@@ -25,12 +26,14 @@ import Demo2 from './Demo2';
         this.state = {
             dialogOpen: false,
             notes: [],
-             sideNavstate:false,
+             sideNavstate:true,
             Archive:false,
             trans:false,
             reminder:false,
             createNotesDisplay:true,
-            collaboratore:[]
+            collaboratore:[],
+            labels:[],
+            
             
         }
     }
@@ -56,7 +59,13 @@ import Demo2 from './Demo2';
             this.setState({ notes: res.data.obj })
             console.log("Notes...", this.state.notes)
         })
-
+       
+        Controller.getAllLabels().then((value)=>{
+            console.log("working......")
+           console.log("hhhhhhhhhhhhhhhhhhhhh ",value)
+            this.setState({labels:value.data.obj})
+            console.log("labelsdfdsafdfgdgfdg",this.state.labels)
+        })
        
     }
     handleside=()=>{
@@ -103,7 +112,7 @@ import Demo2 from './Demo2';
         if(this.state.sideNavstate)
         {
             console.log("?????????",this.state.sideNavstate)
-            sideNav =<SideNav/>
+            // sideNav =<SideNav/>
         }
 
        
@@ -122,21 +131,25 @@ import Demo2 from './Demo2';
             }
         })
 
+        // let displaylabel=this.state.labels.map((value)=>{
+        //     return <SideNav labelsdetails={value} />
+        // })
+
         
       
         return (
             <div>
                 {appNav}
-              
-                <div>
+               
+              {/* {displaylabel} */}
+              <SideNav labels={this.state.labels} open={this.state.sideNavstate}/>
+             
+                <div className={this.state.sideNavstate ? ("moving"):("movingcancle")}>
                    
                 {createNote}
                 {trans}
                 {Archive}
-                
-                
-                </div>
-               
+        
                 <div className="noteSize">
                     <div className="pinname">PINNED</div>
                     
@@ -149,6 +162,7 @@ import Demo2 from './Demo2';
                 <div className="pinname">OTHERS</div>
                 <div className="getNotesContainer">
                     {getNotes}
+                </div>
                 </div>
                 </div>
             </div>

@@ -101,6 +101,12 @@ var contoller={
         console.log("commin././././",email)
         const token=localStorage.getItem("logintoken")
         return axios.post("http://localhost:8080/collaboratore/"+idn+"/"+token,email)
+    },
+
+    getAllLabels()
+    {
+        const token=localStorage.getItem("logintoken")
+        return axios.get("http://localhost:8080/getall/"+token)
     }
     
 }

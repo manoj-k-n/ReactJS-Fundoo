@@ -281,3 +281,40 @@
 
   display: flex;
  }
+
+ /* .......................................sidenavfinal.............................. */
+
+ .Sidefistrow{
+   display: flex;
+  padding: 5%; 
+
+ }
+ .sideicon{
+   padding-left: 2%;
+   padding-right: 18%;
+ }
+
+ .sideLabel{
+   padding-top:5%;
+   padding-left: 7%;
+   padding-bottom: 0;
+ }
+
+ .labelsdisplay{
+   display: flex;
+   justify-content:baseline;
+   padding-bottom: 5%;
+ }
+ .labelsimble{
+   padding-left: 6%;
+ }
+ .labelname{
+  padding-left: 15%;
+ }
+
+ .moving{
+   margin-left: 13%;
+ }
+ .movingcancle{
+   margin-left: 0;
+ }

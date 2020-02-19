@@ -10,7 +10,7 @@ import DashBord from './Components/DashBord'
 import LogOut from './Components/LogOut';
 import NavBar from './Components/NavBar';
 import Label from './Components/Label';
-import SideBar from './Components/SideBar'
+
 import Creatlabel from './Components/Creatlabel';
 
 import getNotes from './Components/GetNotes'
@@ -18,9 +18,9 @@ import createnote from './Components/createnote'
 
 import Icon from './Components/Icon'
 import AppBar from './Components/AppNav';
-import sideNav from './Components/sideNav';
+
 import DemoColour from './Components/DemoColour';
-import Demo2 from './Components/Demo2';
+import SideNav from './Components/SideNav';
  
 
 
@@ -36,7 +36,7 @@ function App() {
       
       <Route path="/dashbord" component={DashBord}/>
       <Route path="/logout"  component={LogOut}/>
-      <Route path="/sidenav" component={SideBar}/>
+     
       <Route path="/label" component={Label}/>
       <Route path="/creatlabel" component={Creatlabel}/>
      
@@ -45,9 +45,9 @@ function App() {
       
        <Route path="/icon" component={Icon}/>
        <Route path="/app" component={AppBar}/>
-       <Route path="/side" component={sideNav}/>
+      
        <Route path="/demo" component={DemoColour}/>
-       <Route path="/demo2" component={Demo2}/>
+       <Route path="/sidenav" component={SideNav}/>
       </Router>
   
   );
