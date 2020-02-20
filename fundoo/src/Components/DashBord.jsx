@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import Createnote from './createnote'
+import Createnote from './Createnote'
 import GetNotes from './GetNotes';
 
 import Controller from '../../src/Controller/UserContoller'
-import "./note.css";
+import "./Note.css";
 import AppNav from './AppNav'
 import { ListItemSecondaryAction } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';

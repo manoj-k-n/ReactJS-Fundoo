@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import "./Demo.css";
+// import "./Demo.css";
 
 import Drawer from '@material-ui/core/Drawer';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';

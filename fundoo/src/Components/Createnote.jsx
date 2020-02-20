@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import InputBase from "@material-ui/core/InputBase";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 import BrushOutlinedIcon from "@material-ui/icons/BrushOutlined";
-import "./note.css";
+import "./Note.css";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
 import NotificationsNoneTwoToneIcon from '@material-ui/icons/NotificationsNoneTwoTone';
 import AddAlertTwoToneIcon from '@material-ui/icons/AddAlertTwoTone';

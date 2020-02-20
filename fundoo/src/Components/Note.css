@@ -318,3 +318,14 @@
  .movingcancle{
    margin-left: 0;
  }
+ .createlabels{
+   display: flex;
+   justify-content: flex-start;
+
+ }
+ .done{
+   margin-left: 80%;
+ }
+ .Inpute{
+   padding-top: 3%;
+ }

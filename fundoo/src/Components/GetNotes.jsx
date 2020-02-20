@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Controller from '../Controller/UserContoller';
-import { Card, Tooltip, Divider, } from '@material-ui/core';
-import "./note.css";
+import { Card, Tooltip, Divider, Popper, Paper, ClickAwayListener, } from '@material-ui/core';
+import "./Note.css";
 import InputBase from "@material-ui/core/InputBase";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
 import NotificationsNoneTwoToneIcon from '@material-ui/icons/NotificationsNoneTwoTone';
@@ -22,6 +22,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Avatar from '@material-ui/core/Avatar';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import DoneIcon from '@material-ui/icons/Done';
+import MenuList from '@material-ui/core/MenuList';
 
 export class getNotes extends Component {
     constructor(props) {
@@ -63,7 +64,10 @@ export class getNotes extends Component {
             opencolourBox: false,
             getAllCollaboratore: [],
             Collaboratoretext: '',
-            deleteAncore:''
+            deleteAncore:'',
+            addlabelsMenu:'',
+            addlabel:false,
+            anchoreE1:""
 
         }
 
@@ -203,6 +207,19 @@ export class getNotes extends Component {
 
     }
 
+    addlabelhandler=()=>{
+        this.setState({addlabel:!this.state.addlabel},{
+            menu: false }
+        )
+    }
+
+    spaceClose=(event)=>{
+        if(event.key==='Tab')
+        {
+            event.preventDefault();
+            this.setState({addlabel:false})
+        }
+    }
 
     render() {
         const colour1 = this.state.manycolour.map((colour) => {
@@ -364,13 +381,23 @@ export class getNotes extends Component {
                                             <Menu open={this.state.menu} onClose={this.closeMenuList}  anchorEl={this.state.deleteAncore} >
                                                 <div >
                                                     <MenuItem onClick={this.changeTrans} style={{fontSize:12}}>Delet note</MenuItem>
-                                                    <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Change label</MenuItem>
+                                                    <MenuItem onClick={this.addlabelhandler} style={{fontSize:12}}>Change label</MenuItem>
+                                                  
+                                                    
                                                     <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Add drawing</MenuItem>
                                                     <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Make a copy</MenuItem>
                                                     <MenuItem onClick={this.MenuClose} style={{fontSize:12}}>Show tick boxes</MenuItem>
                                                     <MenuItem onClick={this.MenuClose} style={{fontSize:12}} >Copy to Google Docs</MenuItem>
                                                 </div>
                                             </Menu>
+                                        </div>
+                                        <div>
+                                        <Menu 
+                                        anchorEl={this.state.anchoreE1}
+                                        keepMounted
+                                        open={this.state.addlabel}>
+                                       
+                                        </Menu>
                                         </div>
                                     </IconButton>
                                 </Tooltip>

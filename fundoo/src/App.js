@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Registration from './Components/Registration';
-import Login from './Components/login';
+import Login from './Components/Login';
 import Forgotpassword from './Components/Forgotpassword';
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom' 
@@ -11,10 +11,10 @@ import LogOut from './Components/LogOut';
 import NavBar from './Components/NavBar';
 import Label from './Components/Label';
 
-import Creatlabel from './Components/Creatlabel';
+
 
 import getNotes from './Components/GetNotes'
-import createnote from './Components/createnote'
+import createnote from './Components/Createnote'
 
 import Icon from './Components/Icon'
 import AppBar from './Components/AppNav';
@@ -38,7 +38,7 @@ function App() {
       <Route path="/logout"  component={LogOut}/>
      
       <Route path="/label" component={Label}/>
-      <Route path="/creatlabel" component={Creatlabel}/>
+      {/* <Route path="/creatlabel" component={Creatlabel}/> */}
      
        <Route path="/note" component={createnote}/>
        <Route path="/getnotes" component={getNotes}/>

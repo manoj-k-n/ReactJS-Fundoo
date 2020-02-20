@@ -107,6 +107,19 @@ var contoller={
     {
         const token=localStorage.getItem("logintoken")
         return axios.get("http://localhost:8080/getall/"+token)
+    },
+
+    createLabel(label)
+    {
+        const token=localStorage.getItem("logintoken")
+        console.log(label,token)
+        return axios.post("http://localhost:8080/labels/"+token,label) 
+    },
+
+    editeLabel(id)
+    {
+        const token=localStorage.getItem("logintoken")
+        return axios.delete("http://localhost:8080/deletelabel/"+id+"/"+token)
     }
     
 }
