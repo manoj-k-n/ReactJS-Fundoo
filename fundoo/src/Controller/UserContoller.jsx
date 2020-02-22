@@ -39,9 +39,8 @@ var contoller={
     createNotes(notedetails)
     {
         const tokenkey=localStorage.getItem('logintoken')
-        console.log(tokenkey)
-        console.log("token is comming")
-        
+       
+        console.log("details ",notedetails)
         return axios.post("http://localhost:8080/notes/"+tokenkey,notedetails)
     },
 
@@ -50,6 +49,12 @@ var contoller={
         const tokenkey=localStorage.getItem('logintoken')
             console.log("working.alfj.fuhgaf.///ilialif//.ihfiah")
         return axios.put("http://localhost:8080/editeText/"+idn+"/"+tokenkey,notedetails)
+    },
+
+    deleteNote(id)
+    {
+        const token=localStorage.getItem('logintoken')
+        return axios.delete("http://localhost:8080/deletnote/"+id+"/"+token)
     },
 
     getAllNotes()
@@ -76,6 +81,12 @@ var contoller={
      console.log(token,"tokennn")
      return axios.put("http://localhost:8080/pin/"+id+"/"+token)
     },
+
+    // create(details)
+    // {
+    //     const token=localStorage.getItem("logintoken")
+    //     return axios.post("http://localhost:8080/notes/"+token,details)
+    // }
 
     changeArchive(id)
     {

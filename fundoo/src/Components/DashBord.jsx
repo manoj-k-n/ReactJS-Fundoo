@@ -14,10 +14,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import DemoColour from './DemoColour';
 import SideNav from './SideNav';
-
-
-
-    
+import Trans from './Trans';
 
 
  class DashBord extends Component {
@@ -33,8 +30,7 @@ import SideNav from './SideNav';
             createNotesDisplay:true,
             collaboratore:[],
             labels:[],
-            
-            
+            viewList:false  
         }
     }
 
@@ -71,6 +67,38 @@ import SideNav from './SideNav';
     handleside=()=>{
         this.setState({sideNavstate:!this.state.sideNavstate})
     }
+
+    transopen=()=>{
+        this.setState({trans:true,
+            // dialogOpen:!this.state.dialogOpen,
+             Archive:false,
+            // reminder:!this.state.reminder,
+            // trans:!this.state.trans,
+
+            createNotesDisplay:false,
+            })
+    }
+
+    archiveOpen=()=>{
+        this.setState({
+            
+                      Archive:true,
+                        // dialogOpen:!this.state.dialogOpen,
+           
+             reminder:false,
+             trans:false,
+            createNotesDisplay:false,
+                    })
+    }
+
+    notesopen=()=>{
+        this.setState({
+            Archive:false,
+            trans:false,
+            createNotesDisplay:true,
+            reminder:false
+        })
+    }
     render() 
     
     {
@@ -83,14 +111,14 @@ import SideNav from './SideNav';
 
 
         let getNotes = this.state.notes.map(item => {
-            console.log("hii",item)
             
-              if(!item.pin_note && this.state.createNotesDisplay && !item.archive && !item.trash)
+            
+              if((this.state.createNotesDisplay && !item.archive && !item.trash&& !item.pin_Note))
               {
-                console.log("hello...........///////",item.pin_note,item.Archive,item.trans)
-                console.log(item.Archive)
-                console.log(item.trans)
-                console.log(item.pin_note)
+                  console.log("pin value", item.pin_Note)
+                  console.log("archive value", item.archive)
+                  console.log("trans value", item.trash)
+                console.log("notes display ",item)
                 return (
                     <GetNotes data={item} handleDialog={this.handleDialog} />
                     )
@@ -100,8 +128,9 @@ import SideNav from './SideNav';
         
         
           let getPinNotes=this.state.notes.map((pin)=>{
-              if(pin.pin_Note)
+              if(pin.pin_Note &&this.state.createNotesDisplay)
               {
+                console.log("pin......////")
                return(<GetNotes data={pin} handleDialog={this.handleDialog}/>)
               }
 
@@ -117,41 +146,63 @@ import SideNav from './SideNav';
 
        
         let Archive=this.state.notes.map((items)=>{
-            if(this.state.Archive && items.archive)
+            if(this.state.Archive && items.archive&& !items.pin_Note && !items.trash)
         {
+            console.log("archive......////")
            return <GetNotes data={items} handleDialog={this.handleDialog} />
         }
 
         })
      
         let trans=this.state.notes.map((item)=>{
-            if(item.trash&&this.state.trans )
+            if(item.trash&&this.state.trans &&!item.archive && !item.pin_Note)
             {
-               return <GetNotes data={item} handleDialog={this.handleDialog} />
+                console.log("hello......////")
+               return <Trans data={item} handleDialog={this.handleDialog} />
             }
         })
 
         // let displaylabel=this.state.labels.map((value)=>{
         //     return <SideNav labelsdetails={value} />
         // })
+      let pinned
+      if(this.state.createNotesDisplay)
+      {
+        pinned='PINNED'
+      }
 
-        
+      let others
+      if(this.state.createNotesDisplay)
+      {
+        others="OTHERS"
+      }
       
         return (
             <div>
                 {appNav}
                
               {/* {displaylabel} */}
-              <SideNav labels={this.state.labels} open={this.state.sideNavstate}/>
-             
-                <div className={this.state.sideNavstate ? ("moving"):("movingcancle")}>
+              <div className="sidenavmargin">
+              <SideNav labels={this.state.labels} open={this.state.sideNavstate}
+                        trnasopen={this.transopen}
+                        archive={this.archiveOpen}
+                        notesopen={this.notesopen}
+              />
+             </div>
+                <div className={this.state.sideNavstate ? ("moving"):("movingcancle")}
+                >
                    
                 {createNote}
                 {trans}
+                
                 {Archive}
+            
         
                 <div className="noteSize">
-                    <div className="pinname">PINNED</div>
+                   
+                    <div className="pinname">{pinned}</div>
+              
+                   
                     
                 <div className="getNotesContainer">
                     {getPinNotes}
@@ -159,7 +210,7 @@ import SideNav from './SideNav';
                 </div>
              
                 <div className="noteSize">
-                <div className="pinname">OTHERS</div>
+        <div className="pinname">{others}</div>
                 <div className="getNotesContainer">
                     {getNotes}
                 </div>

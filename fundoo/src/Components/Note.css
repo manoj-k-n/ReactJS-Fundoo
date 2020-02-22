@@ -3,6 +3,17 @@
     justify-content: center;
     margin-top: 5%;
   }
+
+  .fistrowCrad{
+    padding-left: 4%;
+    padding-top: 2%;
+  }
+  .samerow{
+    display: flex;
+  }
+  .iconrows{
+    display: flex;
+  }
   .main_card {
     padding: 5px;
     height: 40px;
@@ -39,8 +50,15 @@
     display: flex;
 
   }
+  .textfiled22{
+    width: 20%;
+  }
+  .Inputebase{
+    width: 90%;
+  }
   .pinicon{
-      padding-left: 195px;
+      justify-content: end;
+      padding-left: 45%;
   }
   .main_card1 {
     padding: 4px;
@@ -51,8 +69,15 @@
   .notificationrow{
     display: flex;
     
-    justify-content: space-between;
+    justify-content:start;
 
+  }
+  .lastRow{
+    display: flex;
+  }
+  .close{
+    justify-content: end;
+    padding-left: 20%;
   }
 
   /* dispaycard */
@@ -94,7 +119,7 @@
     padding-right: 7%;
   }
   .icon_1st_row{
-    padding-left: 0.5em;
+    padding-left: -0.5em
   }
   /* .title_space{
     padding-top: 10px;
@@ -105,8 +130,16 @@
   flex-wrap: wrap;
   /* padding-left: 15%; */
 }
+
+.getNotesContainercoloume{
+   
+  padding-top: 9px;
+  display:flex;
+  flex-wrap:nowrap;
+}
+
 .pinIconDilogBox{
-  padding-left: 32%;
+  padding-left: 43%;
 }
 .noteSize{
   padding-left:18%;
@@ -328,4 +361,34 @@
  }
  .Inpute{
    padding-top: 3%;
+ }
+
+
+
+ /* ................................................trans................................................... */
+
+ .transfistcard{
+   display: flex;
+   /* justify-content: center; */
+   margin-left: 20%;
+   margin-top: 5%;
+ }
+
+ .Transtextfiled{
+   margin-left: 4%;
+ }
+
+ .lastrow{
+   display: flex;
+   justify-content: flex-start;
+ }
+ .cardinner{
+   margin: 2%;
+ }
+ /* .sidenavmargin{
+   margin-top: 20%;
+ } */
+
+ .row{
+
  }

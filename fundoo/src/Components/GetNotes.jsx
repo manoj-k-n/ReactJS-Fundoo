@@ -23,6 +23,7 @@ import Avatar from '@material-ui/core/Avatar';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import DoneIcon from '@material-ui/icons/Done';
 import MenuList from '@material-ui/core/MenuList';
+import Icon from '../Icon/pin.svg'
 
 export class getNotes extends Component {
     constructor(props) {
@@ -250,7 +251,7 @@ export class getNotes extends Component {
         return !this.state.open ? (
             <div className="getNotesContainer">
                 {/* <Dialog open={this.state.open} > */}
-                <Card className="main_card12" style={{ background: this.state.colour }} >
+                <Card className="main_card12" style={{ background: this.state.colour ,width:"90%"}} >
                     <div>
                         <div className="fist_row_card">
                             <div className="title_space">
@@ -259,7 +260,7 @@ export class getNotes extends Component {
                             <div className="icon_1st_row">
                                 <Tooltip title="Pin">
                                     <IconButton onClick={this.changePin}>
-                                        <NotificationsNoneTwoToneIcon style={{ fontSize: 15 }} />
+                                    <img src={Icon} alt="website logo" width="18"></img>
                                     </IconButton>
                                 </Tooltip>
                             </div>
@@ -414,7 +415,7 @@ export class getNotes extends Component {
                     <Dialog open={this.state.dilogbox} onClose={this.handleClose}>
                         <div  >
 
-                            <Card className="dilogBox_card" style={{ background: this.state.colour }}>
+                            <Card  style={{ background: this.state.colour }}>
                                 <div className="DilogCard">
                                     <div className="dilogBox_fistrow" >
                                         <div className="title_text">
@@ -422,7 +423,7 @@ export class getNotes extends Component {
                                         </div>
                                         <div className="pinIconDilogBox">
                                             <IconButton onClick={this.changePin}>
-                                                <NotificationsNoneTwoToneIcon style={{ fontSize: 20 }} />
+                                            <img src={Icon} alt="website logo" width="21"></img>
                                             </IconButton>
                                         </div>
                                     </div>
@@ -505,7 +506,7 @@ export class getNotes extends Component {
                                                 <div>
                                                 <Tooltip title="Colour Change">
                                     <IconButton>
-                                        <ColorLensIcon style={{ fontSize: 15 }} onClick={this.changeColour}/>
+                                        <ColorLensIcon style={{ fontSize: 18 }} onClick={this.changeColour}/>
                                         <Menu id="simple-menu"
                                         open={this.state.colorOpen}
                                             anchorEl={this.state.colorAnchor}
@@ -516,7 +517,7 @@ export class getNotes extends Component {
                                             </div>
                                         </Menu>
                                     </IconButton>
-                                </Tooltip>s
+                                </Tooltip>
                                                 </div>
                                                 <div>
                                                     <IconButton >
@@ -563,7 +564,7 @@ export class getNotes extends Component {
                                         <div className="closeIcon1111">
 
                                             <Button onClick={this.handleClose} >
-                                                <h5 style={{ fontSize: 18, }} className="close">Close</h5>
+                                               Closes
                                             </Button>
 
                                         </div>

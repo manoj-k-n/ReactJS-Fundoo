@@ -3,7 +3,7 @@ import Drawer from '@material-ui/core/Drawer';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-
+import "./Note.css";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { Divider, List, Dialog, CardContent, TextField } from '@material-ui/core';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
@@ -132,7 +132,7 @@ export class SideNav extends Component {
 
             return (
 
-                <ListItem button>
+                <ListItem button >
                     <ListItemIcon>
                         <LabelOutlinedIcon style={{ fontSize: 25 }} />
                     </ListItemIcon>
@@ -148,7 +148,7 @@ export class SideNav extends Component {
            
             return (
                 <div className="editelabelsdisplay">
-                    <IconButton title="delete"  onClick={() => {this.handleDelete(labels.id)
+                    <IconButton title="delete"  onClick={() => {this.handleDelete(labels.labelid)
                     }}>
                         <DeleteIcon style={{ fontSize: 17 }} />
                     </IconButton>
@@ -171,7 +171,7 @@ export class SideNav extends Component {
                         open={this.props.open}
                         className="Sidemargine">
                         <List>
-                            <ListItem button>
+                            <ListItem button onClick={this.props.notesopen}>
                                 <ListItemIcon>
                                     <EmojiObjectsOutlinedIcon style={{ fontSize: 23 }} />
                                 </ListItemIcon>
@@ -242,7 +242,7 @@ export class SideNav extends Component {
                             <Divider />
 
 
-                            <ListItem button>
+                            <ListItem button onClick={this.props.archive}>
                                 <ListItemIcon>
                                     <ArchiveOutlinedIcon style={{ fontSize: 20 }} />
                                 </ListItemIcon>
@@ -252,11 +252,13 @@ export class SideNav extends Component {
 
 
 
-                            <ListItem button>
-                                <ListItemIcon>
+                            <ListItem button onClick={this.props.trnasopen}>
+                                <ListItemIcon >
                                     <DeleteOutlinedIcon style={{ fontSize: 20 }} />
                                 </ListItemIcon>
                                 <ListItemText primary="Bin" />
+                           
+                                {this.props.trnasopen}
 
                             </ListItem>
                             {/* <div className="Sidefistrow">
