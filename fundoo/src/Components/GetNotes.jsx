@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Controller from '../Controller/UserContoller';
-import { Card, Tooltip, Divider, Popper, Paper, ClickAwayListener, } from '@material-ui/core';
+import { Card, Tooltip, Divider, Popper, Paper, ClickAwayListener, ListItemIcon, ListItemText, } from '@material-ui/core';
 import "./Note.css";
 import InputBase from "@material-ui/core/InputBase";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
@@ -24,6 +24,20 @@ import HowToRegIcon from '@material-ui/icons/HowToReg';
 import DoneIcon from '@material-ui/icons/Done';
 import MenuList from '@material-ui/core/MenuList';
 import Icon from '../Icon/pin.svg'
+import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
+
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardTimePicker,
+//     KeyboardDatePicker,
+//   } from '@material-ui/pickers';
+//   import Grid from '@material-ui/core/Grid';
+// import DateFnsUtils from '@date-io/date-fns';
 
 export class getNotes extends Component {
     constructor(props) {
@@ -68,7 +82,11 @@ export class getNotes extends Component {
             deleteAncore:'',
             addlabelsMenu:'',
             addlabel:false,
-            anchoreE1:""
+            anchoreE1:"",
+            reminderMenu:'',
+            reminderopen:false,
+            ReminderDateAndTime:false,
+            ReminderDateanchor:''
 
         }
 
@@ -222,6 +240,30 @@ export class getNotes extends Component {
         }
     }
 
+    reminderMenuClose=()=>{
+        this.setState({reminderopen:false,
+            reminderMenu:null
+        })
+    }
+    reminderMenuopen=(event)=>{
+      
+        this.setState({reminderopen:true,
+            reminderMenu:event.currentTarget
+        })
+    }
+
+    openDateAndtime=(event)=>{
+        this.setState({ReminderDateAndTime:true,
+        ReminderDateanchor:event.currentTarget,
+        reminderopen:false
+        })
+    }
+
+    handleCloseDate=()=>{
+        this.setState({ReminderDateAndTime:false, 
+        ReminderDateanchor:null})
+    }
+
     render() {
         const colour1 = this.state.manycolour.map((colour) => {
             return (
@@ -251,7 +293,7 @@ export class getNotes extends Component {
         return !this.state.open ? (
             <div className="getNotesContainer">
                 {/* <Dialog open={this.state.open} > */}
-                <Card className="main_card12" style={{ background: this.state.colour ,width:"90%"}} >
+                <Card className="main_card12" style={{ background: this.state.colour }} >
                     <div>
                         <div className="fist_row_card">
                             <div className="title_space">
@@ -270,11 +312,87 @@ export class getNotes extends Component {
                         </div>
                         <div className="finalrow_card">
                             <div>
-                                <Tooltip title="Reminder Me">
-                                    <IconButton >
+                                <Tooltip title="Reminder Me"  onClick={this.reminderMenuopen}>
+                                    <IconButton>
                                         <NotificationImportantIcon style={{ fontSize: 15 }} />
                                     </IconButton>
                                 </Tooltip>
+                                <div>
+                                <Menu className="ReminderMenu"
+                                anchorEl={this.state.reminderMenu}
+                                keepMounted
+                                open={this.state.reminderopen}
+                                onClose={this.reminderMenuClose}
+                                >
+                             <div className="reminderfist"> Reminder:</div>
+                                 
+                        
+                               
+                                  <ListItem button>
+                                  <div className="fistrow">
+                                      <div style={{fontSize:12}}>Later today</div>
+                                      <div className="time" style={{fontSize:12}}>20:00</div>
+                                  </div>
+                                  </ListItem>
+
+                                  <ListItem button>
+                                  <div className="fistrow">
+                                      <div style={{fontSize:12}}>Tommorrow</div>
+                                      <div className="time" style={{fontSize:12}}>80:00</div>
+                                  </div>
+                                  </ListItem>
+
+                                  <ListItem button>
+                                  <div className="fistrow">
+                                      <div style={{fontSize:12}}>Next Week</div>
+                                      <div className="time" style={{fontSize:12}}>Mon, 80:00</div>
+                                  </div>
+                                  </ListItem>
+
+                                  <ListItem button >
+                                  <div className="fistrow" >
+                                      <div style={{fontSize:12}}>Work</div>
+                                     
+                                  </div>
+                                 
+                                  </ListItem>
+
+                                  <ListItem button onClick={this.openDateAndtime}>
+                                      <ListItemIcon>
+                                          <AccessTimeIcon style={{fontSize:12}}/>
+                                      </ListItemIcon>
+                                
+                                  <div style={{fontSize:12}}>Select date and time</div>
+                                  <Menu open={this.state.ReminderDateAndTime}
+                                         anchorEl={this.state.ReminderDateanchor}
+                                         onClose={this.handleCloseDate}
+
+                                         keepMounted>
+                                            <div className="dateFistRow">
+                                                <div ><ArrowBackIcon style={{fontSize:15}}/></div>
+                                                <div className="fistrowname">Select date and time</div>
+                                            </div>
+                                            <Divider/>
+                                  </Menu>
+                                  </ListItem>
+
+                                 
+
+                                  <ListItem button>
+                                      <ListItemIcon>
+                                          <LocationOnIcon style={{fontSize:12}}/>
+                                      </ListItemIcon>
+                                 
+                                  <div style={{fontSize:12}}>Select place</div>
+                                  </ListItem>
+                               
+                                 
+{/* 
+                               </Card> */}
+
+
+                                </Menu>
+                                </div>
                             </div>
                             <div>
                                 <Tooltip title="Collaboratore">
@@ -564,7 +682,7 @@ export class getNotes extends Component {
                                         <div className="closeIcon1111">
 
                                             <Button onClick={this.handleClose} >
-                                               Closes
+                                               Close
                                             </Button>
 
                                         </div>

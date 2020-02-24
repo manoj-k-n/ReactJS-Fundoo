@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.1",
     "@material-ui/icons": "^4.5.1",
+    "@material-ui/pickers": "^3.2.10",
     "@syncfusion/ej2-react-buttons": "^17.4.47",
     "@syncfusion/ej2-react-grids": "^17.4.47",
     "@syncfusion/ej2-react-splitbuttons": "^17.4.47",
@@ -13,6 +14,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "date-fns": "^2.9.0",
     "mdbreact": "^4.25.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",

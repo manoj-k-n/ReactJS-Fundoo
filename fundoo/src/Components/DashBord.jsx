@@ -49,21 +49,25 @@ import Trans from './Trans';
     }
 
     componentDidMount() {
-
-        Controller.getAllNotes().then((res) => {
-           
-            this.setState({ notes: res.data.obj })
-            console.log("Notes...", this.state.notes)
-        })
-       
-        Controller.getAllLabels().then((value)=>{
-            console.log("working......")
-           console.log("hhhhhhhhhhhhhhhhhhhhh ",value)
-            this.setState({labels:value.data.obj})
-            console.log("labelsdfdsafdfgdgfdg",this.state.labels)
-        })
+        
+     
        
     }
+
+     getnotes=Controller.getAllNotes().then((res) => {
+           
+        this.setState({ notes: res.data.obj })
+        console.log("Notes...", this.state.notes)
+    })
+   
+      getlabels=Controller.getAllLabels().then((value)=>{
+        console.log("working......")
+       console.log("hhhhhhhhhhhhhhh4hhhhh ",value)
+        this.setState({labels:value.data.obj})
+        console.log("labelsdfdsafdfgdgfdg",this.state.labels)
+    })
+
+
     handleside=()=>{
         this.setState({sideNavstate:!this.state.sideNavstate})
     }
@@ -195,7 +199,8 @@ import Trans from './Trans';
                 {createNote}
                 {trans}
                 
-                {Archive}
+                <div className="archivemargin">{Archive}</div>
+                
             
         
                 <div className="noteSize">
