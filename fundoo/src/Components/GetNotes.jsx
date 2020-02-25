@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Controller from '../Controller/UserContoller';
-import { Card, Tooltip, Divider, Popper, Paper, ClickAwayListener, ListItemIcon, ListItemText, } from '@material-ui/core';
+import { Card, Tooltip, Divider, Popper, Paper, ClickAwayListener, ListItemIcon, ListItemText, Chip, } from '@material-ui/core';
 import "./Note.css";
 import InputBase from "@material-ui/core/InputBase";
 import AssignmentTurnedInOutlinedIcon from "@material-ui/icons/AssignmentTurnedInOutlined";
@@ -82,11 +82,15 @@ export class getNotes extends Component {
             deleteAncore:'',
             addlabelsMenu:'',
             addlabel:false,
-            anchoreE1:"",
+           
             reminderMenu:'',
             reminderopen:false,
             ReminderDateAndTime:false,
-            ReminderDateanchor:''
+            ReminderDateanchor:'',
+            getallnotes:this.props.getnotes,
+            anchoreE1:"",
+           
+
 
         }
 
@@ -106,6 +110,7 @@ export class getNotes extends Component {
 
         }
         Controller.udateNote(notedetails, (this.state.id)).then((value) => {
+            this.state.getallnotes();
             console.log("hello  ...", value)
         })
         this.setState({ dilogbox: !this.state.dilogbox })
@@ -141,24 +146,32 @@ export class getNotes extends Component {
     }
 
     closeMenuList = () => {
-        this.setState({ menu: false },{deleteAncore:null})
+        this.setState({ menu: false ,deleteAncore:null})
+    }
+
+    getnote(){
+        return  (this.state.getallnotes);
     }
     changePin = () => {
         this.setState({ pin_note: !this.state.pin_note })
         Controller.changePin(this.state.id).then((value) => {
+            
+           this.props.getnotes();
             console.log(value)
         })
     }
     changeArchive = () => {
         this.setState({ archive: !this.state.archive })
         Controller.changeArchive(this.state.id).then((value) => {
+            this.state.getallnotes();
             console.log(value)
         })
     }
 
     changeTrans = () => {
-        this.setState({ trans: !this.state.trans }, { menu: false },{deleteAncore:null})
+        this.setState({ trans: !this.state.trans , menu: false ,deleteAncore:null})
         Controller.changeTrans(this.state.id).then((value) => {
+            this.state.getallnotes();
             console.log(value)
         })
     }
@@ -166,6 +179,7 @@ export class getNotes extends Component {
     handleCollaboroter = () => {
         this.setState({ CollaboratoreDilogBox: true })
         Controller.getCollaboratore(this.state.id).then((value) => {
+            this.state.getallnotes();
 
             this.setState({ getAllCollaboratore: value.data.obj })
             console.log("wkkkkkkkk kkkkk kkkk", this.state.getAllCollaboratore)
@@ -181,6 +195,7 @@ export class getNotes extends Component {
         if (this.state.Collaboratoretext != '' && /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Collaboratoretext)) {
             Controller.addCollaboratore((this.state.id), collaboratore).then((value) => {
                 console.log(value)
+                this.state.getallnotes();
                 if (value.data.messagecode === 200) {
                     this.setState({ CollaboratoreDilogBox: false })
                     console.log("okokokokok")
@@ -216,6 +231,7 @@ export class getNotes extends Component {
 
         console.log("colourtype", edite)
         Controller.editeNotes(edite, this.state.id).then((value) => {
+            this.state.getallnotes();
             if (value.data.messagecode === 200) {
                 console.log(".................")
             }
@@ -226,10 +242,18 @@ export class getNotes extends Component {
 
     }
 
-    addlabelhandler=()=>{
-        this.setState({addlabel:!this.state.addlabel},{
+    addlabelhandler=(event)=>{
+        this.setState({addlabel:true,
+            anchoreE1:event.currentTarget,
             menu: false }
         )
+    }
+
+    closeaddlabel=()=>{
+        this.setState({
+            anchoreE1:null,
+            addlabel:false
+        })
     }
 
     spaceClose=(event)=>{
@@ -259,9 +283,14 @@ export class getNotes extends Component {
         })
     }
 
-    handleCloseDate=()=>{
-        this.setState({ReminderDateAndTime:false, 
-        ReminderDateanchor:null})
+    // handleCloseDate=()=>{
+    //     this.setState({ReminderDateAndTime:false, 
+    //     ReminderDateanchor:null})
+    // }
+
+    closefist=()=>{
+        this.setState({ReminderDateAndTime:false,
+            ReminderDateanchor:null})
     }
 
     render() {
@@ -309,7 +338,20 @@ export class getNotes extends Component {
                         </div>
                         <div className="second_row_card ">
                             <InputBase value={this.state.take_a_note} onClick={this.openDilog} />
+
+
+
                         </div>
+                        {/* <div className="chip"><Chip
+                        open={this.state.ReminderDateAndTime}
+                        style={{fontSize:4}}
+                        label="later today 20:00"
+                        onDelete={this.closefist}
+                        /></div> */}
+
+
+
+
                         <div className="finalrow_card">
                             <div>
                                 <Tooltip title="Reminder Me"  onClick={this.reminderMenuopen}>
@@ -514,7 +556,9 @@ export class getNotes extends Component {
                                         <Menu 
                                         anchorEl={this.state.anchoreE1}
                                         keepMounted
-                                        open={this.state.addlabel}>
+                                        open={this.state.addlabel}
+                                        onClose={this.closeaddlabel}
+                                        >
                                        
                                         </Menu>
                                         </div>
@@ -548,6 +592,10 @@ export class getNotes extends Component {
                                     <div>
                                         <InputBase value={this.state.take_a_note} onChange={this.changeTake} placeholder="Title" />
                                     </div>
+                                    <div className="chip"><Chip
+                        open={true}
+                        style={{fontSize:4}}
+                        /></div>
                                     <div className="fullRow">
                                         <div>
                                             <div className="dilogBox_third_row">

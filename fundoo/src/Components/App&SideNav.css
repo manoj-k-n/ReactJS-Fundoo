@@ -87,3 +87,26 @@
 .IconSide{
     padding-left: 10%;
 }
+
+.profile{
+    margin-top: 50px;
+}
+.profilename{
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.Pname{
+    padding-left: 66px;
+}
+.Pemail{
+    padding-left: 47px; 
+}
+
+.profilepersonadd{
+    display: flex;
+    justify-content: center;
+}
+.add{
+    padding-left: 10px;
+}

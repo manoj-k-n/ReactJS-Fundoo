@@ -24,12 +24,14 @@ export class Trans extends Component {
 
     deleteNoteForEver=()=>{
       contoller.deleteNote((this.state.id)).then((value)=>{
+        this.props.getnotes();
            console.log("delete note result ",value)
       })
     }
 
     recovernote=()=>{
         contoller.changeTrans(this.state.id).then((value)=>{
+            this.props.getnotes();
             console.log("recover note result ",value)
         })
     }

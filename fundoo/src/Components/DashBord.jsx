@@ -50,22 +50,30 @@ import Trans from './Trans';
 
     componentDidMount() {
         
-     
+        this.getnotes();
+        this.getlabels();   
        
     }
 
-     getnotes=Controller.getAllNotes().then((res) => {
+  getnotes=()=>{
+    Controller.getAllNotes().then((res) => {
            
         this.setState({ notes: res.data.obj })
         console.log("Notes...", this.state.notes)
     })
    
-      getlabels=Controller.getAllLabels().then((value)=>{
+  }
+
+  getlabels=()=>{
+    Controller.getAllLabels().then((value)=>{
         console.log("working......")
        console.log("hhhhhhhhhhhhhhh4hhhhh ",value)
         this.setState({labels:value.data.obj})
-        console.log("labelsdfdsafdfgdgfdg",this.state.labels)
+        console.log("labelsdfdsafdeeeefgdgfdg",this.state.labels)
     })
+  }
+
+   
 
 
     handleside=()=>{
@@ -110,7 +118,7 @@ import Trans from './Trans';
         if(this.state.createNotesDisplay)
         {
             console.log("commmmmmmmm")
-            createNote=<Createnote/>
+            createNote=<Createnote getnotes={this.getnotes}/>
         } 
 
 
@@ -124,7 +132,7 @@ import Trans from './Trans';
                   console.log("trans value", item.trash)
                 console.log("notes display ",item)
                 return (
-                    <GetNotes data={item} handleDialog={this.handleDialog} />
+                    <GetNotes getnotes={this.getnotes} data={item} handleDialog={this.handleDialog} />
                     )
               }
           
@@ -135,7 +143,7 @@ import Trans from './Trans';
               if(pin.pin_Note &&this.state.createNotesDisplay)
               {
                 console.log("pin......////")
-               return(<GetNotes data={pin} handleDialog={this.handleDialog}/>)
+               return(<GetNotes getnotes={this.getnotes} data={pin} handleDialog={this.handleDialog}/>)
               }
 
         })
@@ -153,7 +161,7 @@ import Trans from './Trans';
             if(this.state.Archive && items.archive&& !items.pin_Note && !items.trash)
         {
             console.log("archive......////")
-           return <GetNotes data={items} handleDialog={this.handleDialog} />
+           return <GetNotes getnotes={this.getnotes} data={items} handleDialog={this.handleDialog} />
         }
 
         })
@@ -162,7 +170,7 @@ import Trans from './Trans';
             if(item.trash&&this.state.trans &&!item.archive && !item.pin_Note)
             {
                 console.log("hello......////")
-               return <Trans data={item} handleDialog={this.handleDialog} />
+               return <Trans getnotes={this.getnotes} data={item} handleDialog={this.handleDialog} />
             }
         })
 
@@ -191,6 +199,7 @@ import Trans from './Trans';
                         trnasopen={this.transopen}
                         archive={this.archiveOpen}
                         notesopen={this.notesopen}
+                        getlabels={this.getlabels}
               />
              </div>
                 <div className={this.state.sideNavstate ? ("moving"):("movingcancle")}

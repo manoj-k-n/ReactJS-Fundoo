@@ -64,7 +64,8 @@ class createNote extends Component {
        colour:"#FDFEFE",
        CollaboratoreDilogBox:false,
        getAllCollaboratore:[],
-       email:''
+       email:'',
+       getallnotes:this.props.getnotes
       
 
     }
@@ -129,6 +130,7 @@ addColoboratore=(event)=>{
       
       Controller.createNotes(notedetails).then((res)=>
       {
+        this.state.getallnotes();
         console.log(res,"hello")
        if(res.data.messagecode===200)
        {
@@ -173,6 +175,8 @@ this.setState({propper:!this.state.propper})
    handleCollaboroter = () => {
     this.setState({ CollaboratoreDilogBox: true })
     Controller.getCollaboratore(this.state.id).then((value) => {
+    
+     
 
         this.setState({ getAllCollaboratore: value.data.obj })
         console.log("wkkkkkkkk kkkkk kkkk", this.state.getAllCollaboratore)
@@ -188,6 +192,7 @@ this.setState({propper:!this.state.propper})
     if (this.state.Collaboratoretext != '' && /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Collaboratoretext)) {
         Controller.addCollaboratore((this.state.id), collaboratore).then((value) => {
             console.log(value)
+            this.state.getallnotes();
             if (value.data.messagecode === 200) {
                 this.setState({ CollaboratoreDilogBox: false })
                 console.log("okokokokok")

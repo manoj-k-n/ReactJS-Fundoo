@@ -66,6 +66,8 @@ export class SideNav extends Component {
             // labelId: 0,
           labeledite:'',
 
+          getlabels:this.props.getlabels
+
 
 
         }
@@ -94,7 +96,7 @@ export class SideNav extends Component {
         }
         if (this.state.createlabel != '') {
             Contoller.createLabel(labeldetails).then((value) => {
-
+                this.state.getlabels(); 
                 console.log("labelcreate ", value)
             })
         }
@@ -103,8 +105,11 @@ export class SideNav extends Component {
     handleDelete(id){
         console.log("idgg",id)
       Contoller.editeLabel(id).then((value)=>{
+          console.log("hello labels" ,value)
+          this.state.getlabels(); 
           if(value.data.messageCode===200)
           {
+           
               console.log("succcess")
           }
       })

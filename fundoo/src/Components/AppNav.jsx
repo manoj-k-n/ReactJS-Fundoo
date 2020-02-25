@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, InputBase, Tooltip, IconButton } from '@material-ui/core'
+import { Card, InputBase, Tooltip, IconButton, Menu, Divider, ListItem, ListItemText } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import "./App&SideNav.css";
 import icon from '../../src/Icon/download.svg'
@@ -8,8 +8,35 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ViewStreamIcon from '@material-ui/icons/ViewStream';
 import AppsIcon from '@material-ui/icons/Apps';
 import MenuIcon from '@material-ui/icons/Menu';
+import FaceIcon from '@material-ui/icons/Face';
+import Avatar from '@material-ui/core/Avatar';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Button from '@material-ui/core/Button';
 
 export class AppBar extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            profileanchoreEl:'',
+            profile:false,
+            name:"Manoj Manoj",
+            email:"manojpraju08@gmail.com"
+        }
+    }
+
+    openprofile=(event)=>{
+     this.setState({profile:true,
+        profileanchoreEl:event.currentTarget})
+    }
+    closeProfile=()=>{
+        this.setState({profile:false,
+            profileanchoreEl:null
+        })
+    }
+    
 
     render(props) {
         return (
@@ -76,18 +103,40 @@ export class AppBar extends Component {
                  <div className="lastIcon">
                  <div className="RefreshIcon">
                  <Tooltip title="profile">
-                         <IconButton>
-                 <AppsIcon style={{ fontSize: 20 }}/>
+                         <IconButton onClick={this.openprofile}>
+              
+                 <FaceIcon />
                  </IconButton>
                      </Tooltip>
+                     <Menu
+                     anchorEl={this.state.profileanchoreEl}
+                     open={this.state.profile}
+                     onClose={this.closeProfile}
+                     keepMounted
+                     className="profile"
+                     >
+                         <div className="profilename">
+                       <Avatar alt="Remy Sharp" src="" />
+                       </div>
+                       <h2 style={{fontSize:20 }} className="Pname">{this.state.name}</h2>
+                           <h3 style={{fontSize:13 }} className="Pemail">{this.state.email}</h3>
+                           <Divider/>
+                           {/* <div className="profilepersonadd">
+                               <div><PersonAddOutlinedIcon style={{fontSize:20}}/></div>
+                               <div className="add">Add another account</div>
+                           </div> */}
+                           <ListItem button>
+                               <ListItemIcon><PersonAddOutlinedIcon style={{fontSize:20}}/></ListItemIcon>
+                               <ListItemText primary="Add another account"/>
+                           </ListItem>
+                           <Divider/>
+                           <div className="signout">
+                           <Button>Sign out</Button>
+                           </div>
+                     </Menu>
+                       
                  </div>
-                 <div>
-                     <Tooltip title="profile">
-                     <IconButton>
-                        {/* <AppsIcon style={{ fontSize: 20 }}/> */}
-                     </IconButton>
-                     </Tooltip>
-                 </div>
+                
                              
                  </div>
                  </div>

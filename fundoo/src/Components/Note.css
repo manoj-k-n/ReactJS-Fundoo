@@ -94,10 +94,10 @@
     padding-left: 90%;
   } */
   .main_card12{
-    width: 15em;
-    height: 7.5em;
+    width: 89%;
+    height:95%;
     justify-content: space-around;
-    padding:5px;
+    /* padding:5px; */
     margin:2%
   }
   .fist_row_card{
@@ -126,6 +126,7 @@
   } */
 .getNotesContainer{
   padding-top: 9px;
+
   display:flex;
   flex-wrap: wrap;
   /* padding-left: 15%; */
@@ -135,7 +136,7 @@
    
   padding-top: 9px;
   display:flex;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
 }
 
 .pinIconDilogBox{
@@ -421,6 +422,10 @@
  .fistrowname{
    padding-left: 10px;
    padding-right: 91px;
+ }
+
+ .signout{
+   padding-left: 78px;
  }
 
  

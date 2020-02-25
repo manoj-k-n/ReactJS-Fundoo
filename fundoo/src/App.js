@@ -24,6 +24,7 @@ import SideNav from './Components/SideNav';
  import Trans from './Components/Trans'
 
 
+
 function App() {
 
   return (
@@ -49,6 +50,7 @@ function App() {
        <Route path="/demo" component={DemoColour}/>
        <Route path="/sidenav" component={SideNav}/>
        <Route path="/trans" component={Trans}/>
+      
       </Router>
   
   );
